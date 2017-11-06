@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace IoTSensorPortal.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext dbContext;
