@@ -8,6 +8,11 @@ namespace IoTSensorPortal.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationUserManager userManager;
+
+        public HomeController()
+        {
+        }
         public ActionResult Index()
         {
             return View();
@@ -16,13 +21,6 @@ namespace IoTSensorPortal.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }
