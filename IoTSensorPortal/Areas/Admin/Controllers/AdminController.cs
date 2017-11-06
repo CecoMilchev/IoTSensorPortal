@@ -18,8 +18,10 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
 
         public AdminController(ApplicationUserManager userManager, ApplicationDbContext dbContext)
         {
-            Guard.WhenArgument<ApplicationDbContext>(dbContext, "dbContext").IsNotNull();
-            Guard.WhenArgument<ApplicationUserManager>(userManager, "userManager").IsNotNull();
+            Guard.WhenArgument<ApplicationDbContext>(dbContext, "dbContext").IsNull();
+            this.dbContext = dbContext;
+            Guard.WhenArgument<ApplicationUserManager>(userManager, "userManager").IsNull();
+            this.userManager = userManager;
         }
         public ActionResult Index()
         {

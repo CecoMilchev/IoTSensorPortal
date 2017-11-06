@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,10 +11,17 @@ namespace IoTSensorPortal.Controllers
     {
         private readonly ApplicationUserManager userManager;
 
-        public HomeController()
+        public HomeController(ApplicationUserManager userManager)
         {
+            Guard.WhenArgument<ApplicationUserManager>(userManager, "userManager").IsNull();
+            this.userManager = userManager;
         }
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult ViewPublicSensors()
         {
             return View();
         }
