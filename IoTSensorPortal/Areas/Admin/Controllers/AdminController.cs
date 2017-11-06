@@ -1,18 +1,14 @@
 ﻿using Bytes2you.Validation;
 using IoTSensorPortal.Areas.Admin.Models;
 using IoTSensorPortal.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace IoTSensorPortal.Areas.Admin.Controllers
 {
     public class AdminController : Controller
     {
-        // GET: Admin/Admin
         private readonly ApplicationDbContext dbContext;
         private readonly ApplicationUserManager userManager;
 

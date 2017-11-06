@@ -1,8 +1,4 @@
 ﻿using Bytes2you.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace IoTSensorPortal.Controllers
@@ -11,6 +7,9 @@ namespace IoTSensorPortal.Controllers
     {
         private readonly ApplicationUserManager userManager;
 
+        public HomeController()
+        { 
+        }
         public HomeController(ApplicationUserManager userManager)
         {
             Guard.WhenArgument<ApplicationUserManager>(userManager, "userManager").IsNull();
@@ -28,8 +27,6 @@ namespace IoTSensorPortal.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
     }

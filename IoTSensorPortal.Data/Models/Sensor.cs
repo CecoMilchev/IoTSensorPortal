@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace IoTSensorPortal.Data.Models
 {
-    class Sensor
+    public class Sensor
     {
+        
     }
 }
