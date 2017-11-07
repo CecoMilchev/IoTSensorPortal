@@ -41,11 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminActions.cs" />
-    <Compile Include="AuthenticatedActions.cs" />
-    <Compile Include="IUsetActions.cs" />
+    <Compile Include="ISensorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublicActions.cs" />
+    <Compile Include="SensorService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IoTSensorPortal.Data\IoTSensorPortal.Data.csproj">
+      <Project>{02c82894-10d8-44a1-8ea7-9d8384816bbe}</Project>
+      <Name>IoTSensorPortal.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

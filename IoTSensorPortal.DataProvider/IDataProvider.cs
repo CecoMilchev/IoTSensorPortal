@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IoTSensorPortal.DataService
+namespace IoTSensorPortal.DataProvider
 {
-    class AuthenticatedActions
+    public interface IDataProvider
     {
+        
+       
+
+        
+
     }
 }
