@@ -13,9 +13,21 @@ namespace IoTSensorPortal.Data
 
         public virtual IDbSet<Sensor> Sensors { get; set; }
 
+        public virtual IDbSet<SensorHistory> SensorH { get; set; }
+
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApplicationUser>()
+            .HasMany(u => u.SharedSensors)
+            .WithMany(s => s.SharedWithUsers);
         }
     }
 }

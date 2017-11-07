@@ -55,6 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Migrations\201711071709144_Initial migragion.cs" />
+    <Compile Include="Migrations\201711071709144_Initial migragion.Designer.cs">
+      <DependentUpon>201711071709144_Initial migragion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711071716353_Second migration.cs" />
+    <Compile Include="Migrations\201711071716353_Second migration.Designer.cs">
+      <DependentUpon>201711071716353_Second migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Sensor.cs" />
@@ -64,6 +72,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711071709144_Initial migragion.resx">
+      <DependentUpon>201711071709144_Initial migragion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071716353_Second migration.resx">
+      <DependentUpon>201711071716353_Second migration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,10 +9,12 @@ namespace IoTSensorPortal.Data.Models
     public class ApplicationUser : IdentityUser
     {
         private ICollection<Sensor> sensors;
+        private ICollection<Sensor> sharedSensors;
 
         public ApplicationUser()
         {
             this.sensors = new HashSet<Sensor>();
+            this.sharedSensors = new HashSet<Sensor>();
         }
 
         public virtual ICollection<Sensor> Sensors
@@ -24,6 +26,18 @@ namespace IoTSensorPortal.Data.Models
             set
             {
                 this.sensors = value;
+            }
+        }
+
+        public virtual ICollection<Sensor> SharedSensors
+        {
+            get
+            {
+                return this.sharedSensors;
+            }
+            set
+            {
+                this.sharedSensors = value;
             }
         }
 

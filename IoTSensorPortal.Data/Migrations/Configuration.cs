@@ -13,21 +13,21 @@ namespace IoTSensorPortal.Data.Migrations
 
         protected override void Seed(IoTSensorPortal.Data.ApplicationDbContext context)
         {
-            if (!context.Roles.Any())
-            {
-                var role = context.Roles.Add(new IdentityRole("Admin"));
-                context.SaveChanges();
+            //if (!context.Roles.Any())
+            //{
+            //    var role = context.Roles.Add(new IdentityRole("Admin"));
+            //    context.SaveChanges();
 
-                role = context.Roles.Single();
-                var user = context.Users.Single();
-                user.Roles.Add(new IdentityUserRole()
-                {
-                    RoleId = role.Id,
-                    UserId = user.Id
-                });
+            //    role = context.Roles.Single();
+            //    var user = context.Users.Single();
+            //    user.Roles.Add(new IdentityUserRole()
+            //    {
+            //        RoleId = role.Id,
+            //        UserId = user.Id
+            //    });
 
-                context.SaveChanges();
-            }
+            //    context.SaveChanges();
+            //}
         }
     }
 }
