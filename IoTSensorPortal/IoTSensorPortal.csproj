@@ -236,13 +236,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AllUsers.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_EditUser.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -308,6 +310,10 @@
     <ProjectReference Include="..\IoTSensorPortal.DataProvider\IoTSensorPortal.DataProvider.csproj">
       <Project>{8a5b7f06-17eb-408e-8b15-e574089d85d5}</Project>
       <Name>IoTSensorPortal.DataProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IoTSensorPortal.Data\IoTSensorPortal.Data.csproj">
+      <Project>{02c82894-10d8-44a1-8ea7-9d8384816bbe}</Project>
+      <Name>IoTSensorPortal.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

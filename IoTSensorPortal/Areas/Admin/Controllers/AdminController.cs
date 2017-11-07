@@ -20,7 +20,7 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
             Guard.WhenArgument<ApplicationUserManager>(userManager, "userManager").IsNull();
             this.userManager = userManager;
         }
-        public ActionResult Index()
+        public ActionResult AllUsers()
         {
             var usersViewModel = this.dbContext
                 .Users
