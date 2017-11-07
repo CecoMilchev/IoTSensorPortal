@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IoTSensorPortal.Data
+namespace IoTSensorPortal.Data.DataModel
 {
-    public interface IdbContext
+    public class SensorModel
     {
     }
 }
