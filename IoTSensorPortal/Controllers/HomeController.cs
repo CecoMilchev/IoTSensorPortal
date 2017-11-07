@@ -32,7 +32,7 @@ namespace IoTSensorPortal.Controllers
             return View();
         }
 
-        [Authorize]
+        //[Authorize]
         public /*async Task<ActionResult>*/ActionResult About()
         {
             //this.applicationDbContext.Roles.Add(new IdentityRole() { Name = "Admin" });
