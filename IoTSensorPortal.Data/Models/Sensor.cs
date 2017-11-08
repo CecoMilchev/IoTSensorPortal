@@ -13,6 +13,7 @@ namespace IoTSensorPortal.Data.Models
     {
         private ISensorInfo sensorInfo;
         private ISensorState sensorState;
+
         public Sensor(ISensorInfo sensorInfo, ISensorState sensorState)
         {
             Guard.WhenArgument<ISensorInfo>(sensorInfo, "sensorInfo").IsNull();

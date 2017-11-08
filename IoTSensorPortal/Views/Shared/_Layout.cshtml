@@ -20,11 +20,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("View Public Sensors", "ViewPublicSensors", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("View Public Sensors", "ViewPublicSensors", "Sensors", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, null)</li>
                     @if (this.User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Admin", "AllUsers", "Admin", new { area = "Admin" }, null)</li>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Add New Sensor", "AddNewSensor", "Sensors", new { area = "" }, null)</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
