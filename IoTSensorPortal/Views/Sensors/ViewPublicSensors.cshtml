@@ -1,4 +1,4 @@
-﻿@*recive sensor list maybe*@
+﻿@model IEnumerable<IoTSensorPortal.Models.SensorViewModels.SensorShortViewModel>
 <h2>View Public Sensors</h2>
 
 <div class="jumbotron">
@@ -6,6 +6,15 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Search</a></p>
 </div>
 
-<div class="row">
-    @*multiply sensor views *@
-</div>
+@foreach (var sensor in Model)
+{
+    <div class="project-short inline-block">
+        <header>
+            <h3>@Html.ActionLink(sensor.SensorName, "Details", "Sensors", new { id = sensor.SensorId }, new { })</h3>
+        </header>
+    </div>
+}
+
+@*<div class="row">
+    multiply sensor views
+</div>*@

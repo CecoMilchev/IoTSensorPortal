@@ -25,6 +25,16 @@ namespace IoTSensorPortal.Controllers
         {
             return View();
         }
-        
+    
+        public /*async Task<ActionResult>*/ActionResult About()
+        {
+            //this.applicationDbContext.Roles.Add(new IdentityRole() { Name = "Admin" });
+            //await this.applicationDbContext.SaveChangesAsync();
+            //var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);
+            //await this.userManager.AddToRoleAsync(user.Id, "Admin");
+
+            return View();
+        }
+
     }
 }

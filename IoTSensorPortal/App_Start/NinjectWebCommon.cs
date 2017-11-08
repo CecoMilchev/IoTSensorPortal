@@ -7,6 +7,7 @@ using Ninject;
 using Ninject.Web.Common;
 using Microsoft.AspNet.Identity.Owin;
 using IoTSensorPortal.Models;
+using IoTSensorPortal.DataService;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(IoTSensorPortal.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(IoTSensorPortal.App_Start.NinjectWebCommon), "Stop")]
@@ -67,6 +68,7 @@ namespace IoTSensorPortal.App_Start
         {
             kernel.Bind<ApplicationUserManager>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
             kernel.Bind<ApplicationDbContext>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationDbContext>());
+            kernel.Bind<ISensorService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<SensorService>());
         }
     }
 }

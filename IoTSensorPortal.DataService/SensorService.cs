@@ -4,11 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IoTSensorPortal.Data.Models;
+using IoTSensorPortal.Data;
+using Bytes2you.Validation;
 
 namespace IoTSensorPortal.DataService
 {
     public class SensorService : ISensorService
     {
+        private ApplicationDbContext applicationDbContext;
+
+        public SensorService(ApplicationDbContext applicationDbContext)
+        {
+            Guard.WhenArgument(applicationDbContext, "applicationDbContext").IsNull().Throw();
+
+            this.applicationDbContext = applicationDbContext;
+        }
         public void AddSensor() //+data
         {
             throw new NotImplementedException();
@@ -25,7 +35,7 @@ namespace IoTSensorPortal.DataService
         }
 
         //Public sensors
-        public IEnumerable<Sensor> GetAllSensors(int count)
+        public IEnumerable<Sensor> GetAllSensors()
         {
             throw new NotImplementedException();
         }

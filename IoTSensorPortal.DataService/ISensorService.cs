@@ -6,7 +6,7 @@ namespace IoTSensorPortal.DataService
 {
     public interface ISensorService
     {
-        IEnumerable<Sensor> GetAllSensors(int count);
+        IEnumerable<Sensor> GetAllSensors();
 
         IEnumerable<Sensor> GetAllSensorsForUser(string username);
         

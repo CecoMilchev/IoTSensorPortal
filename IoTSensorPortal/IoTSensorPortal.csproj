@@ -315,6 +315,10 @@
       <Project>{8a5b7f06-17eb-408e-8b15-e574089d85d5}</Project>
       <Name>IoTSensorPortal.DataProvider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IoTSensorPortal.DataService\IoTSensorPortal.DataService.csproj">
+      <Project>{9CA45C61-8B87-45D9-A1D3-457D3201C84F}</Project>
+      <Name>IoTSensorPortal.DataService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IoTSensorPortal.Data\IoTSensorPortal.Data.csproj">
       <Project>{02c82894-10d8-44a1-8ea7-9d8384816bbe}</Project>
       <Name>IoTSensorPortal.Data</Name>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -43,6 +44,10 @@ namespace IoTSensorPortal.Models
         public class SensorShortViewModel
         {
             public Guid SensorId { get; set; }
+
+            public IUser User { get; set; }
+
+            public string SensorName { get; set; }
             
         }
     }
