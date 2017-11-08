@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IoTSensorPortal.Data.Models;
 using IoTSensorPortal.Data;
 using Bytes2you.Validation;
+using IoTSensorPortal.DTOs;
 
 namespace IoTSensorPortal.DataService
 {
@@ -19,9 +20,23 @@ namespace IoTSensorPortal.DataService
 
             this.applicationDbContext = applicationDbContext;
         }
-        public void AddSensor() //+data
+        public Guid CreateSensor(SensorDto sensorDto, string userId) //+data
         {
-            throw new NotImplementedException();
+            Guard.WhenArgument(sensorDto, "sensorDto").IsNull().Throw();
+            Guard.WhenArgument(userId, "userId").IsNull().Throw();
+
+            var sensor = new Sensor()
+            {
+                Id = Guid.NewGuid(),
+                ApplicationUserId = sensorDto.OwnerId, //this is the owner of the sensor
+                Description = sensorDto.Description,
+                MinPollingIntervalInSeconds = sensorDto.MinPollingIntervalInSeconds,
+                MeasureType = sensorDto.MeasureType,
+                Tag = sensorDto.Tag                
+            };
+
+            this.applicationDbContext.Sensors.Add(sensor);
+            return sensor.Id;
         }
 
         public void DeleteSensor(Guid id)

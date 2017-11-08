@@ -9,7 +9,7 @@ namespace IoTSensorPortal.Models
 {
     public class SensorViewModels
     {
-        public class ProjectCreateViewModel
+        public class SensorCreateViewModel
         {
             public Guid SensorId { get; set; }
 

@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9CA45C61-8B87-45D9-A1D3-457D3201C84F}</ProjectGuid>
+    <ProjectGuid>{73685FA9-5F93-4EEB-A3E1-A1A8611DF18B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IoTSensorPortal.DataService</RootNamespace>
-    <AssemblyName>IoTSensorPortal.DataService</AssemblyName>
+    <RootNamespace>IoTSensorPortal.DTOs</RootNamespace>
+    <AssemblyName>IoTSensorPortal.DTOs</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,27 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISensorService.cs" />
+    <Compile Include="SensorDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SensorService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IoTSensorPortal.DataProvider\IoTSensorPortal.DataProvider.csproj">
-      <Project>{8a5b7f06-17eb-408e-8b15-e574089d85d5}</Project>
-      <Name>IoTSensorPortal.DataProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IoTSensorPortal.Data\IoTSensorPortal.Data.csproj">
-      <Project>{02c82894-10d8-44a1-8ea7-9d8384816bbe}</Project>
-      <Name>IoTSensorPortal.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IoTSensorPortal.DTOs\IoTSensorPortal.DTOs.csproj">
-      <Project>{73685FA9-5F93-4EEB-A3E1-A1A8611DF18B}</Project>
-      <Name>IoTSensorPortal.DTOs</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

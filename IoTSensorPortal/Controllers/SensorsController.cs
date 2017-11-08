@@ -1,11 +1,11 @@
 ﻿using Bytes2you.Validation;
-using IoTSensorPortal.DataProvider.Models;
+using IoTSensorPortal.Data.Models;
 using IoTSensorPortal.DataService;
-using System;
-using System.Collections.Generic;
+using IoTSensorPortal.DTOs;
+using Microsoft.AspNet.Identity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+
 using static IoTSensorPortal.Models.SensorViewModels;
 
 namespace IoTSensorPortal.Controllers
@@ -13,6 +13,7 @@ namespace IoTSensorPortal.Controllers
     public class SensorsController : Controller
     {
         private ISensorService sensorService;
+
         public SensorsController(ISensorService sensorService)
         {
             Guard.WhenArgument<ISensorService>(sensorService, "sensorService").IsNull();
@@ -32,9 +33,35 @@ namespace IoTSensorPortal.Controllers
                 
             return View(sensors);
         }
+
+        [Authorize]
         public ActionResult Create()
         {
             return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(SensorCreateViewModel sensor)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(sensor);
+            }
+
+            var sensorDto = new SensorDto()
+            {
+                Tag = sensor.Tag,
+                Description = sensor.Description,
+                MinPollingIntervalInSeconds = sensor.MinPollingIntervalInSeconds,
+                MeasureType = sensor.MeasureType
+            };
+
+            var sensorId = this.sensorService.CreateSensor(sensorDto, this.User.Identity.GetUserId());
+
+            return this.RedirectToAction("Details", new { id = sensorId });
+
         }
 
         [Authorize]
