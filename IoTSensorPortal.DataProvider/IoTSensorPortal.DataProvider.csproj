@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ISensorInfo.cs" />
+    <Compile Include="Models\ISensorState.cs" />
     <Compile Include="Models\SensorInfo.cs" />
     <Compile Include="Models\SensorState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
