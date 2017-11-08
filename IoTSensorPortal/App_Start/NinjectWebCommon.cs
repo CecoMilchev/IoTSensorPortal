@@ -68,7 +68,7 @@ namespace IoTSensorPortal.App_Start
         {
             kernel.Bind<ApplicationUserManager>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
             kernel.Bind<ApplicationDbContext>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationDbContext>());
-            kernel.Bind<ISensorService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<SensorService>());
+            kernel.Bind<ISensorService>().To<SensorService>();
         }
     }
 }

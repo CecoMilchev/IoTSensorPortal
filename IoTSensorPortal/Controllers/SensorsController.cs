@@ -60,14 +60,9 @@ namespace IoTSensorPortal.Controllers
 
             var sensorId = this.sensorService.CreateSensor(sensorDto, this.User.Identity.GetUserId());
 
-            return this.RedirectToAction("Details", new { id = sensorId });
+            //return this.RedirectToAction("Details", new { id = sensorId });
+            return this.RedirectToAction("Create");
 
-        }
-
-        [Authorize]
-        public ActionResult AddNewSensor()
-        {
-            return View();
         }
     }
 }
