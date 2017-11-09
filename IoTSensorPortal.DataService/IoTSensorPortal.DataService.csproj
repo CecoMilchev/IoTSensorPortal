@@ -57,7 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISensorService.cs" />
+    <Compile Include="Contracts\ISensorRegisterModel.cs" />
+    <Compile Include="Contracts\ISensorService.cs" />
+    <Compile Include="Contracts\ISensorSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SensorDataHubModule.cs" />
     <Compile Include="SensorService.cs" />

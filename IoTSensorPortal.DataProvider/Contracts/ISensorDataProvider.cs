@@ -6,7 +6,7 @@ namespace IoTSensorPortal.DataProvider
 {
     public interface ISensorDataProvider
     {
-        Task<IEnumerable<ISensorSpecification>> GetAllSensors();
+        Task<IEnumerable<ISensorSpecification>> Update();
 
         Task<IRealTimeState> GetRealTimeValue(Guid sensorId);
     }

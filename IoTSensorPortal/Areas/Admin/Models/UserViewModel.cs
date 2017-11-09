@@ -15,7 +15,7 @@ namespace IoTSensorPortal.Areas.Admin.Models
 
         public bool IsAdmin { get; set; }
 
-        public static Expression<Func<ApplicationUser, UserViewModel>> Create
+        public static Expression<Func<RegisteredUser, UserViewModel>> Create
         {
             get
             {

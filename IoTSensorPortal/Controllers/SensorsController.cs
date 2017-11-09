@@ -1,48 +1,25 @@
 ﻿using Bytes2you.Validation;
-<<<<<<< HEAD
 using IoTSensorPortal.DataService;
-using Microsoft.AspNet.Identity;
-=======
-using IoTSensorPortal.Data;
-using IoTSensorPortal.Data.Models;
-using IoTSensorPortal.DataProvider;
-using IoTSensorPortal.DataService;
-using System.Linq;
-using System.Threading.Tasks;
->>>>>>> 80ed9acb03256809300c40694b0153580778031a
 using System.Web.Mvc;
-
 using static IoTSensorPortal.Models.SensorViewModels;
 
 namespace IoTSensorPortal.Controllers
 {
     public class SensorsController : Controller
     {
+        private readonly ISensorService service;
 
-        private readonly SensorDataProvider sensorDataProvider;
-        private readonly ISensorService sensorService;
-        
-        public SensorsController(ISensorService sensorService, SensorDataProvider sensorDataProvider)
+        public SensorsController(ISensorService service)
         {
-<<<<<<< HEAD
-            Guard.WhenArgument(sensorService, "sensorService").IsNull();
-=======
-            Guard.WhenArgument(sensorService, "sensorService").IsNull().Throw();
->>>>>>> 80ed9acb03256809300c40694b0153580778031a
-            this.sensorService = sensorService;
-            Guard.WhenArgument<SensorDataProvider>(sensorDataProvider, "sensorDataProvider").IsNull();
-            this.sensorDataProvider = sensorDataProvider;
+            Guard.WhenArgument(service, "sensorService").IsNull();
+            this.service = service;
         }
 
-
-        public async Task Run()
+        //update table specification every 30min cache
+        public void Run()
         {
-<<<<<<< HEAD
-            var sensors = this.sensorService.GetAllSensors();
-            return View(sensors);
-=======
-            await sensorDataProvider.Update();
->>>>>>> 80ed9acb03256809300c40694b0153580778031a
+            //var sensors = await service.Update();     //TO DO: da se podkara
+            //View(sensors);
         }
         //[Authorize]
         //public ActionResult ViewPublicSensors()
@@ -69,31 +46,17 @@ namespace IoTSensorPortal.Controllers
         [Authorize]
         public ActionResult RegisterSensor(SensorViewModel model)
         {
-<<<<<<< HEAD
             if (this.ModelState.IsValid)
             {
-                this.sensorService.CreateSensor(
-                User.Identity.GetUserName(),
-                sensor.Name,
-                sensor.Description,
-                sensor.Url,
-                sensor.RefreshRate,
-                sensor.Unit,
-                $"{sensor.MinRange}-{sensor.MinRange}",
-                sensor.IsPublic);
+                //this.service.RegisterSensor(model);
+
                 //to return ID
                 //return this.RedirectToAction("Details", new { id = sensorId });
                 return this.RedirectToAction("Create");
             };
 
-            return View(sensor);
-=======
-            var id = sensorService.RegisterSensor(model);
-
-
-            return this.RedirectToAction("Details", "Sensor", id);
-
->>>>>>> 80ed9acb03256809300c40694b0153580778031a
+            // return this.RedirectToAction("Details", "Sensor", id);
+            return null;
         }
 
 
