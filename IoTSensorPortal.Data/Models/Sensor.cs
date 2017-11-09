@@ -7,12 +7,12 @@ namespace IoTSensorPortal.Data.Models
     public class Sensor
 
     {
-        private ICollection<RegisteredUser> sharedWithUsers;
+        private ICollection<RegisteredUser> sharedWith;
         private ICollection<History> history;
 
         public Sensor()
         {
-            this.SharedTo = new HashSet<RegisteredUser>();
+            this.SharedWith = new HashSet<RegisteredUser>();
             this.History = new HashSet<History>();
         }
 
@@ -20,7 +20,7 @@ namespace IoTSensorPortal.Data.Models
 
         [Required]
         public string OwnerId { get; set; }
-        
+
         public bool IsPublic { get; set; }
 
         public DateTime LastUpdated { get; set; }
@@ -28,7 +28,7 @@ namespace IoTSensorPortal.Data.Models
         public string CurrentValue { get; set; }
 
         public virtual RegisteredUser Owner { get; set; }
-        public virtual ICollection<RegisteredUser> SharedTo { get; set; }
+        public virtual ICollection<RegisteredUser> SharedWith { get; set; }
         public virtual ICollection<History> History
         {
             get
