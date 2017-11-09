@@ -2,20 +2,22 @@
 using IoTSensorPortal.DataProvider;
 using Bytes2you.Validation;
 using System.Threading.Tasks;
+using IoTSensorPortal.DataService;
 
 namespace IoTSensorPortal.Controllers
 {
     public class SensorDataFetchController : Controller
     {
-        private readonly SensorDataProvider sensorDataProvider;
-        public SensorDataFetchController(SensorDataProvider sensorDataProvider)
+        private readonly ISensorDataProvider sensorService;
+        public SensorDataFetchController(ISensorDataProvider sensorService)
         {
-            Guard.WhenArgument<SensorDataProvider>(sensorDataProvider, "sensorDataProvider").IsNull();
-            this.sensorDataProvider = sensorDataProvider;
+            Guard.WhenArgument(sensorService, "sensorDataProvider").IsNull();
+            this.sensorService = sensorService;
         }
+
         public async Task Run()
         {
-            await sensorDataProvider.GetAllSensors();
+            await sensorService.Ge();
         }
     }
 }

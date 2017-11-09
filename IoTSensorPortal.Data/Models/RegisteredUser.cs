@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace IoTSensorPortal.Data.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class RegisteredUser : IdentityUser
     {
         private ICollection<Sensor> sensors;
         private ICollection<Sensor> sharedSensors;
 
-        public ApplicationUser()
+        public RegisteredUser()
         {
             this.sensors = new HashSet<Sensor>();
             this.sharedSensors = new HashSet<Sensor>();
         }
 
-        public virtual ICollection<Sensor> Sensors
+        public virtual ICollection<Sensor> OwnSensors
         {
             get
             {
@@ -41,7 +41,7 @@ namespace IoTSensorPortal.Data.Models
             }
         }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<RegisteredUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);

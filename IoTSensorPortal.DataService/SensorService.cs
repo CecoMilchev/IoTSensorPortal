@@ -1,65 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IoTSensorPortal.Data.Models;
+﻿using Bytes2you.Validation;
 using IoTSensorPortal.Data;
-using Bytes2you.Validation;
-using IoTSensorPortal.DTOs;
+using IoTSensorPortal.Data.Models;
+using IoTSensorPortal.DataProvider;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IoTSensorPortal.DataService
 {
     public class SensorService : ISensorService
     {
-        private ApplicationDbContext applicationDbContext;
+        private IdentityDbContext<IdentityUser> context;
+        private ISensorDataProvider sensorDataProvider;
 
-        public SensorService(ApplicationDbContext applicationDbContext)
+        internal SensorService(IdentityDbContext<IdentityUser> context, ISensorDataProvider sensorDataProvider)
         {
-            Guard.WhenArgument(applicationDbContext, "applicationDbContext").IsNull().Throw();
-
-            this.applicationDbContext = applicationDbContext;
-        }
-        public Guid CreateSensor(SensorDto sensorDto, string userId) //+data
-        {
-            Guard.WhenArgument(sensorDto, "sensorDto").IsNull().Throw();
-            Guard.WhenArgument(userId, "userId").IsNull().Throw();
-
-            var sensor = new Sensor()
-            {
-                Id = Guid.NewGuid(),
-                ApplicationUserId = sensorDto.OwnerId, //this is the owner of the sensor
-                Description = sensorDto.Description,
-                MinPollingIntervalInSeconds = sensorDto.MinPollingIntervalInSeconds,
-                MeasureType = sensorDto.MeasureType,
-                Tag = sensorDto.Tag                
-            };
-
-            this.applicationDbContext.Sensors.Add(sensor);
-            return sensor.Id;
+            Guard.WhenArgument(context, "applicationDbContext").IsNull().Throw();
+            this.context = context;
+            Guard.WhenArgument(sensorDataProvider, "SensorDataProvider").IsNull().Throw();
+            this.context = context;
         }
 
-        public void DeleteSensor(Guid id)
+
+        //The Application should have a private section which is accessible only for logged users.
+        //4 Private part. This section should support the following functionality:
+
+        //4.1 Register new sensor The newly created sensor should have its own:
+        public bool CreateSensor(string ownerName, string name, string description, string url,
+            int refreshRate, Measure unit, string unitRange, bool access)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        public void ModifySensor(Guid id) //+the new data
+        //4.2 View list of own sensors  //bool isOwner = true => return OwnSensors; False => return sharedToHim
+        //Must see 
+        public IEnumerable<Sensor> GetAllSensors(string userName, bool isOwner = true)
         {
-            throw new NotImplementedException();
+            var userSensors = new List<Sensor>();
+
+            return userSensors;
         }
 
-        //Public sensors
-        public IEnumerable<Sensor> GetAllSensors()
+        //4.3 Modify existing sensor
+        public bool EditSensor(Guid id, string name, string description, string url,
+            int refreshRate, Measure unit, string unitRange)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        //for registred user
-        public IEnumerable<Sensor> GetAllSensorsForUser(string username)
+        //4.4 Share a private sensor
+        public void ShareTo(string sharedToUser, Guid sensorId)
         {
-            throw new NotImplementedException();
+            //edit in sql table
         }
 
+        //3.3 View public sensors
+        public Task<IEnumerable<Sensor>> GetAllSensors()
+        {
+            var publicSensors = new List<Sensor>();
+            this.sensorDataProvider.GetAllSensors();
+
+            //Tuk veche si izbirame kakvo da vrushtame kato obekt
+        }
+
+        //Stored data should be used when showing sensor historical data.
+        public IDictionary<DateTime, int> GetHistory(Guid sensorId, TimeSpan period)
+        {
+            return null;
+        }
     }
 }

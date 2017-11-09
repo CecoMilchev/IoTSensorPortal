@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace IoTSensorPortal.DataProvider.Models
+namespace IoTSensorPortal.DataProvider
 {
-    public interface ISensorInfo
+    public interface ISensorSpecification
     {
         Guid SensorId { get; set; }
         string Tag { get; set; }

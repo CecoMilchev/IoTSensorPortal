@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace IoTSensorPortal.DataProvider.Models
+namespace IoTSensorPortal.DataProvider
 {
-    public interface ISensorState
+    public interface IRealTimeState
     {
         DateTime TimeStamp { get; set; }
         string Value { get; set; }
