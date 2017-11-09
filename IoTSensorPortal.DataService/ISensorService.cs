@@ -1,5 +1,4 @@
 ﻿using IoTSensorPortal.Data.Models;
-using IoTSensorPortal.DTOs;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +10,7 @@ namespace IoTSensorPortal.DataService
 
         IEnumerable<Sensor> GetAllSensorsForUser(string username);
         
-        Guid CreateSensor(SensorDto sensorDto, string userId); //new data
+        Guid CreateSensor(string userId); //new data
 
         void ModifySensor(Guid id); //+new data
 

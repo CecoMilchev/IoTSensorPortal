@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IoTSensorPortal.Data.Models;
+﻿using Bytes2you.Validation;
 using IoTSensorPortal.Data;
-using Bytes2you.Validation;
-using IoTSensorPortal.DTOs;
+using IoTSensorPortal.Data.Models;
+using System;
+using System.Collections.Generic;
 
 namespace IoTSensorPortal.DataService
 {
@@ -20,24 +16,23 @@ namespace IoTSensorPortal.DataService
 
             this.applicationDbContext = applicationDbContext;
         }
-        public Guid CreateSensor(SensorDto sensorDto, string userId) //+data
-        {
-            Guard.WhenArgument(sensorDto, "sensorDto").IsNull().Throw();
-            Guard.WhenArgument(userId, "userId").IsNull().Throw();
+        //public Guid CreateSensor(string userId) //+data
+        //{
+        //    Guard.WhenArgument(userId, "userId").IsNull().Throw();
 
-            var sensor = new Sensor()
-            {
-                Id = Guid.NewGuid(),
-                ApplicationUserId = sensorDto.OwnerId, //this is the owner of the sensor
-                Description = sensorDto.Description,
-                MinPollingIntervalInSeconds = sensorDto.MinPollingIntervalInSeconds,
-                MeasureType = sensorDto.MeasureType,
-                Tag = sensorDto.Tag                
-            };
+        //    //var sensor = new Sensor()
+        //    //{
+        //    //    Id = Guid.NewGuid(),
+        //    //    ApplicationUserId = sensorDto.OwnerId, //this is the owner of the sensor
+        //    //    Description = sensorDto.Description,
+        //    //    MinPollingIntervalInSeconds = sensorDto.MinPollingIntervalInSeconds,
+        //    //    MeasureType = sensorDto.MeasureType,
+        //    //    Tag = sensorDto.Tag                
+        //    //};
 
-            this.applicationDbContext.Sensors.Add(sensor);
-            return sensor.Id;
-        }
+        //    //this.applicationDbContext.Sensors.Add(sensor);
+        //    //return sensor.Id;
+        //}
 
         public void DeleteSensor(Guid id)
         {
@@ -61,5 +56,9 @@ namespace IoTSensorPortal.DataService
             throw new NotImplementedException();
         }
 
+        public Guid CreateSensor(string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -58,10 +58,6 @@
       <Project>{02c82894-10d8-44a1-8ea7-9d8384816bbe}</Project>
       <Name>IoTSensorPortal.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IoTSensorPortal.DTOs\IoTSensorPortal.DTOs.csproj">
-      <Project>{73685FA9-5F93-4EEB-A3E1-A1A8611DF18B}</Project>
-      <Name>IoTSensorPortal.DTOs</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -1,7 +1,5 @@
 ﻿using Bytes2you.Validation;
-using IoTSensorPortal.Data.Models;
 using IoTSensorPortal.DataService;
-using IoTSensorPortal.DTOs;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
@@ -50,15 +48,15 @@ namespace IoTSensorPortal.Controllers
                 return View(sensor);
             }
 
-            var sensorDto = new SensorDto()
-            {
-                Tag = sensor.Tag,
-                Description = sensor.Description,
-                MinPollingIntervalInSeconds = sensor.MinPollingIntervalInSeconds,
-                MeasureType = sensor.MeasureType
-            };
+            //var sensorDto = new SensorDto()
+            //{
+            //    Tag = sensor.Tag,
+            //    Description = sensor.Description,
+            //    MinPollingIntervalInSeconds = sensor.MinPollingIntervalInSeconds,
+            //    MeasureType = sensor.MeasureType
+            //};
 
-            var sensorId = this.sensorService.CreateSensor(sensorDto, this.User.Identity.GetUserId());
+            //var sensorId = this.sensorService.CreateSensor(sensorDto, this.User.Identity.GetUserId());
 
             //return this.RedirectToAction("Details", new { id = sensorId });
             return this.RedirectToAction("Create");
