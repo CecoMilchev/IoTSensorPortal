@@ -1,6 +1,15 @@
 ﻿using Bytes2you.Validation;
+<<<<<<< HEAD
 using IoTSensorPortal.DataService;
 using Microsoft.AspNet.Identity;
+=======
+using IoTSensorPortal.Data;
+using IoTSensorPortal.Data.Models;
+using IoTSensorPortal.DataProvider;
+using IoTSensorPortal.DataService;
+using System.Linq;
+using System.Threading.Tasks;
+>>>>>>> 80ed9acb03256809300c40694b0153580778031a
 using System.Web.Mvc;
 
 using static IoTSensorPortal.Models.SensorViewModels;
@@ -9,32 +18,58 @@ namespace IoTSensorPortal.Controllers
 {
     public class SensorsController : Controller
     {
-        private ISensorService sensorService;
 
-        public SensorsController(ISensorService sensorService)
+        private readonly SensorDataProvider sensorDataProvider;
+        private readonly ISensorService sensorService;
+        
+        public SensorsController(ISensorService sensorService, SensorDataProvider sensorDataProvider)
         {
+<<<<<<< HEAD
             Guard.WhenArgument(sensorService, "sensorService").IsNull();
+=======
+            Guard.WhenArgument(sensorService, "sensorService").IsNull().Throw();
+>>>>>>> 80ed9acb03256809300c40694b0153580778031a
             this.sensorService = sensorService;
+            Guard.WhenArgument<SensorDataProvider>(sensorDataProvider, "sensorDataProvider").IsNull();
+            this.sensorDataProvider = sensorDataProvider;
         }
 
-        [Authorize]
-        public ActionResult ViewPublicSensors()
+
+        public async Task Run()
         {
+<<<<<<< HEAD
             var sensors = this.sensorService.GetAllSensors();
             return View(sensors);
+=======
+            await sensorDataProvider.Update();
+>>>>>>> 80ed9acb03256809300c40694b0153580778031a
         }
+        //[Authorize]
+        //public ActionResult ViewPublicSensors()
+        //{
+        //    var sensors = this.dbContext.se.GetAllSensors().Select(
+        //        s => new SensorShortViewModel()
+        //        {
+        //            SensorId = s.Id,
+        //            User = s.Owner,
+        //            SensorName = s.Tag
+        //        });
+
+        //    return View(sensors);
+        //}
 
         [Authorize]
-        public ActionResult Create()
+        public ActionResult RegisterSensor()
         {
-            return View();
+            return this.View();
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(SensorCreateViewModel sensor)
+        [Authorize]
+        public ActionResult RegisterSensor(SensorViewModel model)
         {
+<<<<<<< HEAD
             if (this.ModelState.IsValid)
             {
                 this.sensorService.CreateSensor(
@@ -52,6 +87,15 @@ namespace IoTSensorPortal.Controllers
             };
 
             return View(sensor);
+=======
+            var id = sensorService.RegisterSensor(model);
+
+
+            return this.RedirectToAction("Details", "Sensor", id);
+
+>>>>>>> 80ed9acb03256809300c40694b0153580778031a
         }
+
+
     }
 }
