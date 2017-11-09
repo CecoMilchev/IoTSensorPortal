@@ -1,6 +1,5 @@
 ﻿using Bytes2you.Validation;
 using IoTSensorPortal.DataService;
-using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -25,7 +24,7 @@ namespace IoTSensorPortal.Controllers
                 s => new SensorShortViewModel()
                 {
                     SensorId = s.Id,
-                    User = s.ApplicationUser,
+                    User = s.Owner,
                     SensorName = s.Tag
                 });
                 

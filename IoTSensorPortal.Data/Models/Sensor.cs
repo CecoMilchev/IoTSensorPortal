@@ -11,41 +11,63 @@ namespace IoTSensorPortal.Data.Models
 {
     public class Sensor
     {
-        private ISensorInfo sensorInfo;
-        private ISensorState sensorState;
+        private ICollection<ApplicationUser> sharedWithUsers;
+        private ICollection<History> history;
 
         public Sensor()
         {
-
-        }
-        public Sensor(ISensorInfo sensorInfo, ISensorState sensorState)
-        {
-            Guard.WhenArgument<ISensorInfo>(sensorInfo, "sensorInfo").IsNull();
-            this.sensorInfo = sensorInfo;
-            Guard.WhenArgument<ISensorState>(sensorState, "sensorState").IsNull();
-            this.sensorState = sensorState;
-
             this.SharedWithUsers = new HashSet<ApplicationUser>();
-            this.SensorHistories = new HashSet<SensorHistory>();
+            this.History = new HashSet<History>();
         }
 
         public Guid Id { get; set; }
 
         [Required]
-        public string ApplicationUserId { get; set; }
-        
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public string OwnerId { get; set; }
 
-        public virtual ICollection<ApplicationUser> SharedWithUsers { get; set; }
+        public virtual ApplicationUser Owner { get; set; }
 
-        public virtual ICollection<SensorHistory> SensorHistories { get; set; }
+        public string Url { get; set; }
 
-        public string Tag { get; set; }
+        public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public int MinPollingIntervalInSeconds { get; set; }
+        public string Tag { get; set; }
 
         public string MeasureType { get; set; }
+
+        public int MinPollingIntervalInSeconds { get; set; }
+
+        public bool IsPublic { get; set; }
+
+        public DateTime LastUpdated { get; set; }
+
+        public string CurrentValue { get; set; }
+
+        public virtual ICollection<ApplicationUser> SharedWithUsers
+        {
+            get
+            {
+                return this.sharedWithUsers;
+            }
+            set
+            {
+                this.sharedWithUsers = value;
+            }
+        }
+
+        public virtual ICollection<History> History
+        {
+            get
+            {
+                return this.history;
+            }
+            set
+            {
+                this.history = value;
+            }
+        }
+
     }
 }
