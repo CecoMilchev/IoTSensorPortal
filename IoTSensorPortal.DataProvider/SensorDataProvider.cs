@@ -13,12 +13,12 @@ namespace IoTSensorPortal.DataProvider
     public class SensorDataProvider
     {
         private readonly string baseUrl;
-        public SensorDataProvider()
+        public SensorDataProvider(ISensorService sensorService)
         {
             this.baseUrl = "http://telerikacademy.icb.bg/";
         }
 
-        public async Task GetAllSensors()
+        public async Task Update()
         {
             using (var client = new HttpClient())
             {
@@ -59,7 +59,35 @@ namespace IoTSensorPortal.DataProvider
                 // This text is added only once to the file.
                 // Create a file to write to.
                 File.WriteAllLines(path, sensorsState, Encoding.UTF8);
-                
+
+
+
+
+                //for (int i = 0; i < sensorsInfo.Count; i++)
+                //{
+                //    var sensorsToCheck = applicationDbContext.Sensors.Select(s => s.Id);
+                //    foreach (var sensor in sensorsToCheck)
+                //    {
+                //        if (sensor.PollingInterval % intervalCounter == 0)
+                //        {
+                //            var curentState = await GetSensorById(sensorsInfo[i].SensorId);
+                //            sensor.SensorH.Add(new SensorHistory()
+                //            {
+                //                ID = new Guid(),
+                //                DateTime = DateTime.Now,
+                //                Value = curentState.value,
+                //                ValueType = curentState.valueType
+                //            });
+                //            Edit sensor last updated on SensorHistory DateTime;
+
+                //            applicationDbContext.SaveChanges();
+
+                //        }
+                //    }
+                //}
+                //intervalCounter += 5;
+
+
             }
         }
 

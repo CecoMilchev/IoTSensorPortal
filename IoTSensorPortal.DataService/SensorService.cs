@@ -56,9 +56,26 @@ namespace IoTSensorPortal.DataService
             throw new NotImplementedException();
         }
 
-        public Guid CreateSensor(string userId)
+        public Guid RegisterSensor(Sensor sensor)
         {
-            throw new NotImplementedException();
+            var s = new Sensor
+            {
+                Name = sensor.Name,
+                Description = s.Description,
+                Url = s.Url,
+                MinPollingIntervalInSeconds = s.PollingInterval,
+                MeasureType = s.MeasureType,
+                IsPublic = s.IsPublic,
+                LastUpdated = System.DateTime.Now,
+                Owner = s.Users.First(u => u.UserName == this.User.Identity.Name),
+                CurrentValue = "555555"
+            };
+
+            dbContext.Sensors.Add(sensor);
+            dbContext.SaveChanges();
+
+            return = "";
+            // Should return id for created sensor to redirect detailed view
         }
     }
 }

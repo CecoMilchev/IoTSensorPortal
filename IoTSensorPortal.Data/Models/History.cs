@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IoTSensorPortal.Data.Models
 {
-    [Table("History")]
+    //[Table("History")]
     public class History
     {
         public Guid Id { get; set; }

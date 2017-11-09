@@ -10,7 +10,7 @@ namespace IoTSensorPortal.DataService
 
         IEnumerable<Sensor> GetAllSensorsForUser(string username);
         
-        Guid CreateSensor(string userId); //new data
+        Guid RegisterSensor(SensorRegisterModel model); //new data
 
         void ModifySensor(Guid id); //+new data
 

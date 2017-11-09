@@ -13,7 +13,7 @@ namespace IoTSensorPortal.Data
 
         public virtual IDbSet<Sensor> Sensors { get; set; }
 
-        public virtual IDbSet<History> SensorH { get; set; }
+        public virtual IDbSet<History> History { get; set; }
 
 
         public static ApplicationDbContext Create()
