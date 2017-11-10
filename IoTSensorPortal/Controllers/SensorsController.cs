@@ -8,7 +8,7 @@ namespace IoTSensorPortal.Controllers
     public class SensorsController : Controller
     {
         private readonly ISensorService sensorService;
-        
+
         public SensorsController(ISensorService sensorService)
         {
             Guard.WhenArgument(sensorService, "sensorService").IsNull().Throw();
@@ -40,19 +40,12 @@ namespace IoTSensorPortal.Controllers
         [Authorize]
         public ActionResult RegisterSensor(SensorViewModel model)
         {
-
-            return this.RedirectToAction("Details", "Sensor");
-            //if (this.ModelState.IsValid)
-            //{
-            //    //this.service.RegisterSensor(model);
-
-            //    //to return ID
-            //    //return this.RedirectToAction("Details", new { id = sensorId });
-            //    return this.RedirectToAction("Create");
-            //};
-
-            // return this.RedirectToAction("Details", "Sensor", id);
-            return null;
+            if (this.ModelState.IsValid)
+            {
+                var id = this.sensorService.RegisterSensor(model);
+                return this.RedirectToAction("Details", new { id });
+            };
+            return this.RedirectToAction("Create");
         }
 
 

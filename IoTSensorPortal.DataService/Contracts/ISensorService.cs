@@ -7,7 +7,7 @@ namespace IoTSensorPortal.DataService
 {
     public interface ISensorService
     {
-        void RegisterSensor(ISensorRegisterModel model);
+        Guid RegisterSensor(ISensorRegisterModel model);
 
         void EditSensor(Guid id, ISensorRegisterModel model);
 

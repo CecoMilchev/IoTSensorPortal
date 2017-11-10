@@ -4,13 +4,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace IoTSensorPortal.Models
 {
-    public class SensorViewModels : ISensorRegisterModel
+    public class SensorViewModels
     {
-        public class SensorViewModel
+        public class SensorViewModel : ISensorRegisterModel
         {
             [Required]
             [Display(Name = "Name")]
-
             public string Name { get; set; }
 
             [Required]
@@ -22,8 +21,8 @@ namespace IoTSensorPortal.Models
             public string Url { get; set; }
 
             [Required]
-            [Display(Name = "Polling Interval")]
-            public int PollingInterval { get; set; }
+            [Display(Name = "Refresh Rate")]
+            public int RefreshRate { get; set; }
 
             [Required]
             [Display(Name = "Measure Type")]
@@ -45,6 +44,13 @@ namespace IoTSensorPortal.Models
             [Display(Name = "Value")]
             public string Value { get; set; }
 
+            [Required]
+            [Display(Name = "Lowest Range")]
+            public int MinValue { get; set; }
+
+            [Required]
+            [Display(Name = "Maximum Range")]
+            public int MaxValue { get; set; }
         }
 
         public class SensorShortViewModel

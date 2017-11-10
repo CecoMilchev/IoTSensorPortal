@@ -22,9 +22,11 @@ namespace IoTSensorPortal.DataService
         }
 
         //4.1 Register new sensor The newly created sensor should have its own:
-        public void RegisterSensor(ISensorRegisterModel model)
+        public Guid RegisterSensor(ISensorRegisterModel model)
         {
-
+            var sensor = new Sensor { };
+            //this.context.Users.Attach(sensor)
+            return sensor.Id;
         }
 
         //4.3 Modify existing sensor
