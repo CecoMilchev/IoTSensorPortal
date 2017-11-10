@@ -1,4 +1,4 @@
-﻿using IoTSensorPortal.DataProvider.Contracts;
+using IoTSensorPortal.DataProvider.Contracts;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

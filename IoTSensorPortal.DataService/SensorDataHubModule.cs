@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace IoTSensorPortal.DataService
 {
+
     //The module which gathers data from the registered sensors and store their values for historical reasons.
     //The module should contain also analytics.
-    class SensorDataHubModule
+    class SensorDataHubModule 
     {
         //6.1 Sensor Data Polling
 

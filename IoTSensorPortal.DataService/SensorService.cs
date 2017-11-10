@@ -69,45 +69,28 @@ namespace IoTSensorPortal.DataService
             return null;
         }
 
+        public IEnumerable<Contracts.ISensorSpecification> Update()
+        {
+            throw new NotImplementedException();
+        }
+
         //public IEnumerable<ISensorSpecification> Update()
         //{
         //    var result = this.provider.Update();
         //    return null;
         //}
+        //4.1 Register new sensor The newly created sensor should have its own:
 
-        public IEnumerable<Sensor> GetAllSensors()
-        {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<Sensor> GetAllSensorsForUser(string username)
-        {
-            throw new NotImplementedException();
-        }
+        //public IEnumerable<Sensor> GetAllSensors()
+        //{
 
-        public Guid RegisterSensor()
-        {
-            throw new NotImplementedException();
-        }
+        //}
 
-        public void ModifySensor(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        //4.4 Share a private sensor
+        //public void ShareTo(string sharedToUser, Guid sensorId)
+        //{
 
-        public void UpdateAllSensors()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<string> GetAllSensorsType()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Contracts.ISensorSpecification> Update()
-        {
-            throw new NotImplementedException();
-        }
+        //}
     }
 }

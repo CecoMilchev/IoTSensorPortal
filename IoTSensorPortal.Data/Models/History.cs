@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace IoTSensorPortal.Data.Models
+﻿namespace IoTSensorPortal.Data.Models
 {
-    //[Table("History")]
     public class History
     {
         public Guid Id { get; set; }

@@ -1,8 +1,9 @@
 ﻿using IoTSensorPortal.Data.Models;
+using IoTSensorPortal.DataService.Contracts;
 using System;
 using System.Collections.Generic;
 
-namespace IoTSensorPortal.DataService.Contracts
+namespace IoTSensorPortal.DataService
 {
     public interface ISensorService
     {
