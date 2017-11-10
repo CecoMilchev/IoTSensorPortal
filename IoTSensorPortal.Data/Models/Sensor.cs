@@ -1,22 +1,17 @@
-﻿using Bytes2you.Validation;
-using IoTSensorPortal.DataProvider.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IoTSensorPortal.Data.Models
 {
     public class Sensor
     {
-        private ICollection<ApplicationUser> sharedWithUsers;
+        private ICollection<RegisteredUser> sharedWithUsers;
         private ICollection<History> history;
 
         public Sensor()
         {
-            this.SharedWithUsers = new HashSet<ApplicationUser>();
+            this.SharedWithUsers = new HashSet<RegisteredUser>();
             this.History = new HashSet<History>();
         }
 
@@ -25,27 +20,23 @@ namespace IoTSensorPortal.Data.Models
         [Required]
         public string OwnerId { get; set; }
 
-        public virtual ApplicationUser Owner { get; set; }
+        public virtual RegisteredUser Owner { get; set; }
 
         public string Url { get; set; }
 
         public string Name { get; set; }
 
-        public string Description { get; set; }
+        public int RefreshRate { get; set; }
 
-        public string Tag { get; set; }
+        public int MinValue { get; set; }
 
-        public string MeasureType { get; set; }
-
-        public int MinPollingIntervalInSeconds { get; set; }
-
+        public int MaxValue { get; set; }
+        
         public bool IsPublic { get; set; }
 
         public DateTime LastUpdated { get; set; }
 
-        public string CurrentValue { get; set; }
-
-        public virtual ICollection<ApplicationUser> SharedWithUsers
+        public virtual ICollection<RegisteredUser> SharedWithUsers
         {
             get
             {

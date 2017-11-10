@@ -1,13 +1,14 @@
-using System;
-using System.Web;
-
+using IoTSensorPortal.DataProvider;
+using IoTSensorPortal.DataProvider.Contracts;
+using IoTSensorPortal.DataService;
+using IoTSensorPortal.DataService.Contracts;
+using IoTSensorPortal.Models;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
 using Ninject;
 using Ninject.Web.Common;
-using Microsoft.AspNet.Identity.Owin;
-using IoTSensorPortal.Models;
-using IoTSensorPortal.DataService;
+using System;
+using System.Web;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(IoTSensorPortal.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(IoTSensorPortal.App_Start.NinjectWebCommon), "Stop")]
@@ -68,6 +69,7 @@ namespace IoTSensorPortal.App_Start
         {
             kernel.Bind<ApplicationUserManager>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
             kernel.Bind<ApplicationDbContext>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationDbContext>());
+            kernel.Bind<ISensorDataProvider>().To<SensorDataProvider>();
             kernel.Bind<ISensorService>().To<SensorService>();
         }
     }

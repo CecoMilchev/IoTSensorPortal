@@ -1,6 +1,8 @@
 ﻿using Bytes2you.Validation;
 using IoTSensorPortal.Data;
 using IoTSensorPortal.Data.Models;
+using IoTSensorPortal.DataProvider.Contracts;
+using IoTSensorPortal.DataService.Contracts;
 using System;
 using System.Collections.Generic;
 
@@ -8,74 +10,104 @@ namespace IoTSensorPortal.DataService
 {
     public class SensorService : ISensorService
     {
-        private ApplicationDbContext applicationDbContext;
+        private ApplicationDbContext context;
+        private ISensorDataProvider provider;
 
-        public SensorService(ApplicationDbContext applicationDbContext)
+        public SensorService(ApplicationDbContext context, ISensorDataProvider provider)
         {
-            Guard.WhenArgument(applicationDbContext, "applicationDbContext").IsNull().Throw();
-
-            this.applicationDbContext = applicationDbContext;
+            Guard.WhenArgument(context, "context").IsNull().Throw();
+            this.context = context;
+            Guard.WhenArgument(provider, "provider").IsNull().Throw();
+            this.provider = provider;
         }
-        //public Guid CreateSensor(string userId) //+data
-        //{
-        //    Guard.WhenArgument(userId, "userId").IsNull().Throw();
 
-        //    //var sensor = new Sensor()
-        //    //{
-        //    //    Id = Guid.NewGuid(),
-        //    //    ApplicationUserId = sensorDto.OwnerId, //this is the owner of the sensor
-        //    //    Description = sensorDto.Description,
-        //    //    MinPollingIntervalInSeconds = sensorDto.MinPollingIntervalInSeconds,
-        //    //    MeasureType = sensorDto.MeasureType,
-        //    //    Tag = sensorDto.Tag                
-        //    //};
+        //4.1 Register new sensor The newly created sensor should have its own:
+        public void RegisterSensor(ISensorRegisterModel model)
+        {
 
-        //    //this.applicationDbContext.Sensors.Add(sensor);
-        //    //return sensor.Id;
-        //}
+        }
+
+        //4.3 Modify existing sensor
+        public void EditSensor(Guid id, ISensorRegisterModel model)
+        {
+
+        }
 
         public void DeleteSensor(Guid id)
         {
-            throw new NotImplementedException();
+
         }
 
-        public void ModifySensor(Guid id) //+the new data
+        //4.4 Share a private sensor
+        public void ShareTo(string sharedToUser, Guid sensorId)
         {
-            throw new NotImplementedException();
+
         }
 
-        //Public sensors
+        //4.2 View list of own sensors 
+        public IEnumerable<Sensor> GetUserOwn(string userName)
+        {
+            return null;
+        }
+
+        public IEnumerable<Sensor> GetSharedToUser(string userName)
+        {
+            return null;
+        }
+
+        //3.3 View public sensors
+        public IEnumerable<Sensor> GetPublic()
+        {
+            return null;
+        }
+
+        //Stored data should be used when showing sensor historical data.
+        public IDictionary<DateTime, int> GetHistory(Guid sensorId, TimeSpan period)
+        {
+
+            // Should return id for created sensor to redirect detailed view
+            return null;
+        }
+
+        //public IEnumerable<ISensorSpecification> Update()
+        //{
+        //    var result = this.provider.Update();
+        //    return null;
+        //}
+
         public IEnumerable<Sensor> GetAllSensors()
         {
             throw new NotImplementedException();
         }
 
-        //for registred user
         public IEnumerable<Sensor> GetAllSensorsForUser(string username)
         {
             throw new NotImplementedException();
         }
 
-        public Guid RegisterSensor(Sensor sensor)
+        public Guid RegisterSensor()
         {
-            var s = new Sensor
-            {
-                Name = sensor.Name,
-                Description = s.Description,
-                Url = s.Url,
-                MinPollingIntervalInSeconds = s.PollingInterval,
-                MeasureType = s.MeasureType,
-                IsPublic = s.IsPublic,
-                LastUpdated = System.DateTime.Now,
-                Owner = s.Users.First(u => u.UserName == this.User.Identity.Name),
-                CurrentValue = "555555"
-            };
+            throw new NotImplementedException();
+        }
 
-            dbContext.Sensors.Add(sensor);
-            dbContext.SaveChanges();
+        public void ModifySensor(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-            return = "";
-            // Should return id for created sensor to redirect detailed view
+        public void UpdateAllSensors()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetAllSensorsType()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Contracts.ISensorSpecification> Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

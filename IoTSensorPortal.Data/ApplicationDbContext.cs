@@ -4,7 +4,7 @@ using System.Data.Entity;
 
 namespace IoTSensorPortal.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<RegisteredUser>
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -25,7 +25,7 @@ namespace IoTSensorPortal.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ApplicationUser>()
+            modelBuilder.Entity<RegisteredUser>()
             .HasMany(u => u.SharedSensors)
             .WithMany(s => s.SharedWithUsers);
         }
