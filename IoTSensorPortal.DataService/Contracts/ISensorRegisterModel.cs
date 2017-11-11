@@ -1,8 +1,8 @@
-﻿namespace IoTSensorPortal.DataService.Contracts
+﻿namespace IoTSensorPortal.DataService
 {
     public interface ISensorRegisterModel
     {
-        string Url { get; set; } //sensor type user defined
+        string Url { get; set; } //sensor type user defined ( NOT free will )
 
         string Name { get; set; } //can the user input a name or it comes from sensorInformation
 

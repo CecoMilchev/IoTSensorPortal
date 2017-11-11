@@ -1,7 +1,6 @@
 using IoTSensorPortal.DataProvider;
 using IoTSensorPortal.DataProvider.Contracts;
 using IoTSensorPortal.DataService;
-using IoTSensorPortal.DataService.Contracts;
 using IoTSensorPortal.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -15,8 +14,6 @@ using System.Web;
 
 namespace IoTSensorPortal.App_Start
 {
-
-
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();

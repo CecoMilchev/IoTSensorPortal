@@ -1,4 +1,4 @@
-﻿using IoTSensorPortal.DataService.Contracts;
+﻿using IoTSensorPortal.DataService;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -38,7 +38,7 @@ namespace IoTSensorPortal.Models
 
             [Required]
             [Display(Name = "Owner")]
-            public RegisteredUser Owner { get; set; }
+            public string Owner { get; set; }
 
             [Required]
             [Display(Name = "Value")]
@@ -55,11 +55,11 @@ namespace IoTSensorPortal.Models
 
         public class SensorShortViewModel
         {
-            public Guid SensorId { get; set; }
+            public string Id { get; set; }
 
-            public string OwnerName { get; set; }
+            public string Owner { get; set; }
 
-            public string SensorName { get; set; }
+            public string Name { get; set; }
         }
     }
 }

@@ -1,28 +1,29 @@
 ﻿using IoTSensorPortal.Data.Models;
-using IoTSensorPortal.DataService.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IoTSensorPortal.DataService
 {
     public interface ISensorService
     {
-        Guid RegisterSensor(ISensorRegisterModel model);
+        Task<string> RegisterSensor(string owner, ISensorRegisterModel model);
 
-        void EditSensor(Guid id, ISensorRegisterModel model);
+        void EditSensor(string id, ISensorRegisterModel model);
 
-        void DeleteSensor(Guid id);
+        void DeleteSensor(string id);
 
-        void ShareTo(string registeredUser, Guid sensorId);
+        void ShareTo(string registeredUser, string sensorId);
 
         IEnumerable<Sensor> GetUserOwn(string username);
 
         IEnumerable<Sensor> GetSharedToUser(string userName);
 
-        IEnumerable<Sensor> GetPublic();
+        IEnumerable<ISensorShortModel> GetPublic();
 
-        IDictionary<DateTime, int> GetHistory(Guid sensorId, TimeSpan period);
+        IDictionary<DateTime, int> GetHistory(string sensorId, TimeSpan period);
 
-        IEnumerable<ISensorSpecification> Update(); //update to controller to update sensor specification every 30min
+        //update to controller to update sensor specification every 30min
+        Task<IEnumerable<ISensorSpecification>> Update();
     }
 }

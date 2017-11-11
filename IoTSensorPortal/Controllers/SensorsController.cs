@@ -1,5 +1,6 @@
 ﻿using Bytes2you.Validation;
 using IoTSensorPortal.DataService;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using static IoTSensorPortal.Models.SensorViewModels;
 
@@ -7,26 +8,31 @@ namespace IoTSensorPortal.Controllers
 {
     public class SensorsController : Controller
     {
-        private readonly ISensorService sensorService;
+        private readonly ISensorService service;
 
         public SensorsController(ISensorService sensorService)
         {
             Guard.WhenArgument(sensorService, "sensorService").IsNull().Throw();
-            this.sensorService = sensorService;
+            this.service = sensorService;
         }
         //update table specification every 30min cache
         public void Run()
         {
-            //var sensors = await service.Update();     //TO DO: da se podkara
-            //View(sensors);
+            var sensorTypes = this.service.Update();  //TO DO: da se podkara nqmam survisa da testvam
+            View(sensorTypes);
         }
 
         [Authorize]
         public ActionResult ViewPublicSensors()
         {
-            //this.sensorService.Get();
+            //var result = this.service.GetPublic(); //Needs a sensor short VM no history and a collection
+            //error na prazna kolekciq 
+            var result = new List<SensorShortViewModel>
+            {
+                new SensorShortViewModel { Id = "peshoId", Name = "Pesho name", Owner = "Pesho Owns" }
+            };
 
-            return View();
+            return View(result);
         }
 
         [Authorize]
@@ -42,10 +48,11 @@ namespace IoTSensorPortal.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var id = this.sensorService.RegisterSensor(model);
+                var id = this.service.RegisterSensor(this.User.Identity.Name, model);
                 return this.RedirectToAction("Details", new { id });
             };
-            return this.RedirectToAction("Create");
+
+            return View(); //this.RedirectToAction("Create"); can`t find create
         }
 
 

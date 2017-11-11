@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="Contracts\IRealTimeState.cs" />
     <Compile Include="Contracts\ISensorDataProvider.cs" />
-    <Compile Include="Contracts\ISensorSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SensorDataProvider.cs" />
     <Compile Include="SensorHttpClient.cs" />
