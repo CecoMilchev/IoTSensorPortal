@@ -322,6 +322,10 @@
       <Project>{9CA45C61-8B87-45D9-A1D3-457D3201C84F}</Project>
       <Name>IoTSensorPortal.DataService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IoTSensorPortal.Data\IoTSensorPortal.Data.csproj">
+      <Project>{02C82894-10D8-44A1-8EA7-9D8384816BBE}</Project>
+      <Name>IoTSensorPortal.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

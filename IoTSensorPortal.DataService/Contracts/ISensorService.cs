@@ -28,6 +28,6 @@ namespace IoTSensorPortal.DataService
 
         IEnumerable<T> GetSensorSpecifications<T>();
 
-        void Update(); //update to controller to update sensor specification every 30min
+        void Update(int counter); //update to controller to update sensor specification every 30min
     }
 }

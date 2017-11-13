@@ -107,9 +107,9 @@ namespace IoTSensorPortal.DataService
             return null;
         }
 
-        public void Update()
+        public void Update(int counter)
         {
-            this.provider.Update();
+            this.provider.Update(counter);
         }
         public IEnumerable<T> GetSensorSpecifications<T>()
         {

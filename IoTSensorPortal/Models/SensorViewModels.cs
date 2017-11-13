@@ -24,7 +24,7 @@ namespace IoTSensorPortal.Models
         [Required, Display(Name = "Maximum allowed value")]
         public int MaxValue { get; set; }
 
-        [Required, Display(Name = "Publicly visible")]
+        [Required, Display(Name = "Public")]
         public bool IsPublic { get; set; }
 
         //Sensor Api Spec 
@@ -35,6 +35,9 @@ namespace IoTSensorPortal.Models
         //Measured values - History
         public TimeSpan Period { get; set; }
         //Vizualizaciq na istoriqta
+
+        [Display(Name = "Curent value")]
+        public string CurrentValue { get; set; }
     }
 
     public class SensorRegisterViewModel : ISensorRegisterModel

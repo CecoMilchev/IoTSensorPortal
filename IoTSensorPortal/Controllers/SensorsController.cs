@@ -11,6 +11,7 @@ namespace IoTSensorPortal.Controllers
     public class SensorsController : Controller
     {
         private readonly ISensorService service;
+        private int counter;
 
         public SensorsController(ISensorService sensorService)
         {
@@ -21,7 +22,7 @@ namespace IoTSensorPortal.Controllers
         public void Run() //public only for the windows service to run
         {
             //update our service
-            this.service.Update();
+            this.service.Update(this.counter);
             //Need counter
             this.GetSensorTypes();
         }
@@ -98,12 +99,6 @@ namespace IoTSensorPortal.Controllers
             var model = this.service.GetSharedToUser(this.User.Identity.Name);
             return View(model);
         }
-
-
-
-
-
-
     }
 }
 //[ChildActionOnly]

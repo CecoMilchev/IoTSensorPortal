@@ -14,6 +14,6 @@ namespace IoTSensorPortal.DataProvider.Contracts
         
         History GetRealTimeValue(string URL);
 
-        void Update();
+        void Update(int counter);
     }
 }

@@ -1,4 +1,5 @@
-﻿using IoTSensorPortal.Models;
+﻿using IoTSensorPortal.Data.Migrations;
+using IoTSensorPortal.Models;
 using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
