@@ -38,7 +38,16 @@ namespace IoTSensorPortal.Controllers
         [Authorize]
         public ActionResult RegisterSensor()
         {
+
             return this.View();
+        }
+
+        [ChildActionOnly]
+        [OutputCache(Duration = 3600)]
+        public ActionResult DropDownPartial()
+        {
+            List<SelectListItem> dropDownValues = service.GetPublic().Select(s => new SelectListItem() { Text = s. }).tol();
+            return this.PartialView(dropDownValues);
         }
 
         [HttpPost]

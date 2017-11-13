@@ -20,6 +20,7 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
             Guard.WhenArgument<ApplicationUserManager>(userManager, "userManager").IsNull();
             this.userManager = userManager;
         }
+
         public ActionResult AllUsers()
         {
             var usersViewModel = this.dbContext
@@ -43,7 +44,7 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
         public async Task<ActionResult> EditUser(UserViewModel userViewModel)
         {
             if (userViewModel.IsAdmin)
-            {
+            { 
                 await this.userManager.AddToRoleAsync(userViewModel.Id, "Admin");
             }
             else
@@ -53,5 +54,10 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
 
             return this.RedirectToAction("AllUsers");
         }
+
+        //public ActionResult GetAllSensors()
+        //{
+        //    var allSensorsViewModel = this.dbContext.
+        //}
     }
 }

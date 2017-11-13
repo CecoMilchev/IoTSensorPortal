@@ -1,6 +1,9 @@
 ﻿using IoTSensorPortal.DataService;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace IoTSensorPortal.Models
 {
@@ -51,6 +54,8 @@ namespace IoTSensorPortal.Models
             [Required]
             [Display(Name = "Maximum Range")]
             public int MaxValue { get; set; }
+
+            public IEnumerable<SelectListItem> DropDownValues { get; set; }
         }
 
         public class SensorShortViewModel
