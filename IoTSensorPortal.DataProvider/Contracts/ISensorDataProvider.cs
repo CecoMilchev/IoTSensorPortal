@@ -8,8 +8,10 @@ namespace IoTSensorPortal.DataProvider.Contracts
 {
     public interface ISensorDataProvider
     {
-        IEnumerable<SensorInfo> GetAllSensorsInfo();
+        Dictionary<string, Guid> GetAllSensorsTags();
 
+        IEnumerable<SensorInfo> GetAllSensorsInfo();
+        
         History GetRealTimeValue(string URL);
 
         void Update();

@@ -2,13 +2,10 @@
 using IoTSensorPortal.Data;
 using IoTSensorPortal.Data.DataModels;
 using IoTSensorPortal.Data.Models;
-using IoTSensorPortal.DataProvider;
 using IoTSensorPortal.DataProvider.Contracts;
-using IoTSensorPortal.DataService.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace IoTSensorPortal.DataService
 {
@@ -25,9 +22,9 @@ namespace IoTSensorPortal.DataService
             this.provider = provider;
         }
 
-        public IList<Dictionary<string, string>> GetAllSensors()
+        public Dictionary<string, Guid> GetAllSensors()
         {
-            return this.provider.GetAllSensorsInfo();
+            return this.provider.GetAllSensorsTags();
         }
 
         public void RegisterSensor(string username)

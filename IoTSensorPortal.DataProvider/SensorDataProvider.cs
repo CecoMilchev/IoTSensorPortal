@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace IoTSensorPortal.DataProvider
 {
@@ -25,6 +24,7 @@ namespace IoTSensorPortal.DataProvider
             this.context = context;
             counter = 5;
         }
+
 
         public IEnumerable<SensorInfo> GetAllSensorsInfo()
         {
@@ -83,9 +83,6 @@ namespace IoTSensorPortal.DataProvider
 
         public void Update()
         {
-            //var sensorsInfo = GetAllSensorsInfo().ToList();
-
-
             var sensors = this.context.Sensors.ToList();
 
             foreach (var sensor in sensors)
@@ -102,6 +99,20 @@ namespace IoTSensorPortal.DataProvider
             }
             context.SaveChanges();
             counter += 5;
+        }
+
+        public Dictionary<string, Guid> GetAllSensorsTags()
+        {
+            var sensorsInfo = GetAllSensorsInfo();
+            
+            Dictionary<string, Guid> list = new Dictionary<string, Guid>();
+
+            foreach (var sensorInfo in sensorsInfo)
+            {
+                list.Add(sensorInfo.Tag, sensorInfo.SensorId);
+            }
+
+            return list;
         }
     }
 }
