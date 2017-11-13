@@ -70,17 +70,13 @@ namespace IoTSensorPortal.Controllers
             return this.View();
         }
 
-        [Authorize, ValidateAntiForgeryToken, HttpPost]
+        [Authorize]
         public ActionResult Details(Guid id)
         {
-            if (id != null)
-            {
-                string jsonString = this.service.ReadSensor(id);
-                var model = JsonConvert.DeserializeObject<FullDetailsViewModel>(jsonString);
-                //kak da go kast kum viewModel
-                return View(model);
-            }
-            return View();
+            string jsonString = this.service.ReadSensor(id);
+            var model = JsonConvert.DeserializeObject<FullDetailsViewModel>(jsonString);
+            //kak da go kast kum viewModel
+            return View(model);
         }
 
         public ActionResult PublicList()

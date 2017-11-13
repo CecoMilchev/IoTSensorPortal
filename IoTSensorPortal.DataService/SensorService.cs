@@ -46,10 +46,14 @@ namespace IoTSensorPortal.DataService
 
             return sensor.Id;
         }
+        
         public string ReadSensor(Guid id)
         {
             Sensor sensor =  this.context.Sensors.Find(id);
-            return JsonConvert.SerializeObject(sensor);
+            return JsonConvert.SerializeObject(sensor, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
 
         }
         public Guid UpdateSensor(Guid id, ISensorRegisterModel model)

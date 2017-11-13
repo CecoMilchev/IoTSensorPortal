@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace IoTSensorPortal.Models
 {
-    public class FullDetailsViewModel : ISensorRegisterModel
+    public class FullDetailsViewModel
     {
         //Registered User Values
         //Registerable
