@@ -1,5 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using System.Globalization;
+using System.Threading;
 
 [assembly: OwinStartupAttribute(typeof(IoTSensorPortal.Startup))]
 namespace IoTSensorPortal

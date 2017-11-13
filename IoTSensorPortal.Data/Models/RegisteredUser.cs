@@ -8,45 +8,22 @@ namespace IoTSensorPortal.Data.Models
 {
     public class RegisteredUser : IdentityUser
     {
-        private ICollection<Sensor> ownSensors;
-        private ICollection<Sensor> sharedSensors;
-
         public RegisteredUser()
         {
-            this.ownSensors = new HashSet<Sensor>();
-            this.sharedSensors = new HashSet<Sensor>();
+            this.OwnSensors = new HashSet<Sensor>();
+            this.SharedSensors = new HashSet<Sensor>();
         }
 
-        public virtual ICollection<Sensor> OwnSensors
+        public virtual ICollection<Sensor> OwnSensors { get; set; }
+
+        public virtual ICollection<Sensor> SharedSensors { get; set; }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<RegisteredUser> manager)
         {
-            get
-            {
-                return this.ownSensors;
-            }
-            set
-            {
-                this.ownSensors = value;
-            }
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
         }
-
-        public virtual ICollection<Sensor> SharedSensors
-        {
-            get
-            {
-                return this.sharedSensors;
-            }
-            set
-            {
-                this.sharedSensors = value;
-            }
-        }
-
-        //public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<RegisteredUser> manager)
-        //{
-        //    // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-        //    var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-        //    // Add custom user claims here
-        //    return userIdentity;
-        //}
     }
 }

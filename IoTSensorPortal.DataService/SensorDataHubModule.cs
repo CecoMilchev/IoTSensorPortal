@@ -1,10 +1,28 @@
+
+using Bytes2you.Validation;
+using IoTSensorPortal.Data.DataModels;
+using IoTSensorPortal.DataProvider.Contracts;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 namespace IoTSensorPortal.DataService
 {
 
     //The module which gathers data from the registered sensors and store their values for historical reasons.
     //The module should contain also analytics.
-    class SensorDataHubModule 
+    public class SensorDataHubModule
     {
+        private ISensorDataProvider provider;
+        public SensorDataHubModule(ISensorDataProvider provider)
+        {
+            Guard.WhenArgument(provider, "provider").IsNull().Throw();
+            this.provider = provider;
+        }
+
+        public async Task<IEnumerable<SensorModel>> GetAllSensorsInfo()
+        {
+            return null;//await this.provider.GetAllSensorsInfo();
+        }
         //6.1 Sensor Data Polling
 
         //The module should poll data from sensors based on their pooling interval setting. 
@@ -16,3 +34,6 @@ namespace IoTSensorPortal.DataService
         //It’s the controller action responsibility to decide whether and which sensors data to poll.
     }
 }
+//roller action responsibility to decide whether and which sensors data to poll.
+
+

@@ -1,16 +1,20 @@
-﻿using IoTSensorPortal.DataService;
+﻿
+using IoTSensorPortal.DataService;
+using IoTSensorPortal.DataService.Contracts;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 
 namespace IoTSensorPortal.Models
 {
     public class SensorViewModels
     {
-        public class SensorViewModel : ISensorRegisterModel
+        public class SensorViewModel
         {
+            public Guid Id { get; set; }
+
             [Required]
             [Display(Name = "Name")]
             public string Name { get; set; }
@@ -24,8 +28,8 @@ namespace IoTSensorPortal.Models
             public string Url { get; set; }
 
             [Required]
-            [Display(Name = "Refresh Rate")]
-            public int RefreshRate { get; set; }
+            [Display(Name = "Polling Interval")]
+            public int PollingInterval { get; set; }
 
             [Required]
             [Display(Name = "Measure Type")]
@@ -40,31 +44,54 @@ namespace IoTSensorPortal.Models
             public DateTime LastUpdate { get; set; }
 
             [Required]
-            [Display(Name = "Owner")]
-            public string Owner { get; set; }
-
-            [Required]
             [Display(Name = "Value")]
             public string Value { get; set; }
 
             [Required]
-            [Display(Name = "Lowest Range")]
-            public int MinValue { get; set; }
+            public static Expression<Func<SensorService, SensorViewModel>> SensorTags
+            {
+                get
+                {
+                    return s => new SensorViewModel()
+                    {
+                        Id = new Guid(),
+                        //Url = s.GetAllSensors(),
 
-            [Required]
-            [Display(Name = "Maximum Range")]
-            public int MaxValue { get; set; }
+                    };
+                }
+            }
 
-            public IEnumerable<SelectListItem> DropDownValues { get; set; }
+            //public IList<SensorSpecifications> SensorUrls { get; set; }
+
+            public string Owner { get; set; }
+            //IList<string> ISensorRegisterModel.SensorUrls { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         }
 
         public class SensorShortViewModel
         {
-            public string Id { get; set; }
+            public Guid SensorId { get; set; }
 
-            public string Owner { get; set; }
+            public string OwnerName { get; set; }
 
-            public string Name { get; set; }
+            public string SensorName { get; set; }
         }
     }
+
+
+    //[Required]
+    //[Display(Name = "Maximum Range")]
+    //public int MaxValue { get; set; }
+
+    //public IEnumerable<SelectListItem> DropDownValues { get; set; }
+
+    public class SensorShortViewModel
+    {
+        public string Id { get; set; }
+
+        public string Owner { get; set; }
+
+        public string Name { get; set; }
+    }
+
+
 }

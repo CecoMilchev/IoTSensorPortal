@@ -1,20 +1,23 @@
-﻿@model IEnumerable<IoTSensorPortal.Models.SensorViewModels.SensorShortViewModel>
+﻿@model IEnumerable<SensorViewModels.SensorViewModel>
 <h2>View Public Sensors</h2>
 
 <div class="jumbotron">
-    <div class="lead">Search will be here</div>
+    <div class="lead">Search wi be here</div>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Search</a></p>
 </div>
-
-@foreach (var sensor in Model)
+@if (@Model != null)
 {
-    <div class="project-short inline-block">
-        <header>
-            <h3>@Html.ActionLink(sensor.Name, "Details", "Sensors", new { id = sensor.Id }, new { })</h3>
-        </header>
-    </div>
+    foreach (var sensor in @Model)
+    {
+        <div class="project-short inline-block">
+            <header>
+                <h3>@Html.ActionLink(sensor.SensorName, "Details", "Sensors", new { id = sensor.SensorId }, new { })</h3>
+            </header>
+        </div>
+    }
 }
 
-@*<div class="row">
+
+<div class="row">
     multiply sensor views
-</div>*@
+</div>

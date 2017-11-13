@@ -1,12 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using IoTSensorPortal.Data.DataModels;
+using IoTSensorPortal.Data.Models;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IoTSensorPortal.DataProvider.Contracts
 {
     public interface ISensorDataProvider
     {
-        Task<IEnumerable<T>> Update<T>(string action);
+        IEnumerable<SensorInfo> GetAllSensorsInfo();
 
-        Task<IRealTimeState> GetRealTimeValue(string id);
+        History GetRealTimeValue(string URL);
+
+        void Update();
     }
 }

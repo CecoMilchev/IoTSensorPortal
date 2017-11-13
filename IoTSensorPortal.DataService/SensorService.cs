@@ -1,7 +1,10 @@
 ﻿using Bytes2you.Validation;
 using IoTSensorPortal.Data;
+using IoTSensorPortal.Data.DataModels;
 using IoTSensorPortal.Data.Models;
+using IoTSensorPortal.DataProvider;
 using IoTSensorPortal.DataProvider.Contracts;
+using IoTSensorPortal.DataService.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,80 +25,116 @@ namespace IoTSensorPortal.DataService
             this.provider = provider;
         }
 
-        //4.1 Register new sensor The newly created sensor should have its own:
-        public async Task<string> RegisterSensor(string owner, ISensorRegisterModel model)
+        public IList<Dictionary<string, string>> GetAllSensors()
         {
-            var legitOwner = this.context.Users.First(x => x.UserName == owner); //possible null ref
+            return this.provider.GetAllSensorsInfo();
+        }
 
-            var sensor = new Sensor //possible entity error when we have validation
+        public void RegisterSensor(string username)
+        {
+            RegisteredUser user = this.GetUser(username);
+            DateTime createDate = DateTime.Now;
+            List<History> history = new List<History> { new History() { Id = Guid.NewGuid(), UpdateDate = createDate } };
+
+            Sensor sensor = new Sensor
             {
-                Url = model.Url,
-                Name = model.Name,
-                RefreshRate = model.RefreshRate,
-                MinValue = model.MinValue,
-                MaxValue = model.MaxValue,
-                IsPublic = model.IsPublic
+                Id = Guid.NewGuid(),
+                History = history,
+                IsPublic = true,
+                LastUpdated = createDate,
+                MaxValue = 20,
+                MinValue = 13,
+                Name = "Sensor 1",
+                Owner = user,
+                OwnerId = user.Id,
+                RefreshRate = 10,
+                SharedWithUsers = new List<RegisteredUser>(),
+                Url = "f1796a28-642e-401f-8129-fd7465417061",
+                CurrentValue = "25"
             };
 
-            var history = new History { Sensor = sensor };
+            this.context.Sensors.Add(sensor);
 
-            var valueCheck = await provider.GetRealTimeValue(model.Url); //possible network error
-            history.UpdateDate = valueCheck.TimeStamp;
-            history.Value = valueCheck.Value;
-
-            legitOwner.OwnSensors.Add(sensor);
-            sensor.LastUpdated = DateTime.UtcNow; //mai trqbva da si otide tova prop
-            await this.context.SaveChangesAsync(); //posible sql validation error
-
-            return sensor.Id.ToString();
+            this.context.SaveChanges();
         }
 
         //4.3 Modify existing sensor
-        public void EditSensor(string id, ISensorRegisterModel model)
+        public void EditSensor(Guid id, SensorModel model)
         {
 
         }
 
-        public void DeleteSensor(string id)
+        public void DeleteSensor(Guid id)
         {
 
         }
 
         //4.4 Share a private sensor
-        public void ShareTo(string sharedToUser, string sensorId)
+        public void ShareTo(string sharedToUser, Guid sensorId)
         {
 
         }
 
         //4.2 View list of own sensors 
-        public IEnumerable<Sensor> GetUserOwn(string userName)
+        public IEnumerable<SensorModel> GetUserOwn(string userName)
         {
             return null;
         }
 
-        public IEnumerable<Sensor> GetSharedToUser(string userName)
+        public IEnumerable<SensorModel> GetSharedToUser(string userName)
         {
             return null;
         }
 
         //3.3 View public sensors
-        public IEnumerable<ISensorShortModel> GetPublic()
+        public List<Sensor> GetAllPublicSensors()
         {
-            return null; //NULL REF
+            return this.context.Sensors.Where(s => s.IsPublic == true).ToList();
         }
 
         //Stored data should be used when showing sensor historical data.
-        public IDictionary<DateTime, int> GetHistory(string sensorId, TimeSpan period)
+        public IDictionary<DateTime, int> GetHistory(Guid sensorId, TimeSpan period)
         {
 
             // Should return id for created sensor to redirect detailed view
             return null;
         }
 
-        public async Task<IEnumerable<ISensorSpecification>> Update()
+        public void Update()
         {
-            var result = await this.provider.Update<ISensorSpecification>("api/sensor/all");
-            return result;
+            this.provider.Update();
+        }
+
+        //4.1 Register new sensor The newly created sensor should have its own:
+
+
+        //public async Task<IEnumerable<string>> GetAllSensors()
+        //{
+        //    return await this.provider.GetAllSensorsInfo();
+        //}
+
+        public IEnumerable<SensorModel> GetAllSensorsForUser(string username)
+        {
+            RegisteredUser user = this.GetUser(username);
+
+            return this.context.Sensors.Where(s => s.OwnerId == user.Id)
+                .Select(s => new SensorModel()
+                {
+                    //URL = s.Url,
+                    //Tag = s.Name
+                }).ToList();
+        }
+
+        private RegisteredUser GetUser(string username)
+        {
+            var user = this.context.Users.First(u => u.UserName == username);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException($"There is no user with username {username}!");
+            }
+
+            return user;
         }
 
     }
