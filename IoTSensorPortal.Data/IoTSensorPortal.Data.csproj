@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201711101435057_Sensor Fixed.Designer.cs">
       <DependentUpon>201711101435057_Sensor Fixed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711131530058_registerSensor.cs" />
+    <Compile Include="Migrations\201711131530058_registerSensor.Designer.cs">
+      <DependentUpon>201711131530058_registerSensor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\RegisteredUser.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\History.cs" />
@@ -99,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711101435057_Sensor Fixed.resx">
       <DependentUpon>201711101435057_Sensor Fixed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711131530058_registerSensor.resx">
+      <DependentUpon>201711131530058_registerSensor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

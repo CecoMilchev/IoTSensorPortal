@@ -1,6 +1,5 @@
 using Bytes2you.Validation;
 using IoTSensorPortal.Data;
-using IoTSensorPortal.Data.DataModels;
 using IoTSensorPortal.Data.Models;
 using IoTSensorPortal.DataProvider.Contracts;
 using Newtonsoft.Json;
@@ -26,9 +25,9 @@ namespace IoTSensorPortal.DataProvider
         }
 
 
-        public IEnumerable<SensorInfo> GetAllSensorsInfo()
+        public IEnumerable<T> GetAllSensorsInfo<T>()
         {
-            var sensorsInfo = new List<SensorInfo>();
+            var sensorsInfo = new List<T>();
 
             using (var client = new HttpClient())
             {
@@ -49,7 +48,7 @@ namespace IoTSensorPortal.DataProvider
                     var result = response.Content.ReadAsStringAsync().Result;
 
                     //Deserializing the response recieved from web api and storing into the Employee list  
-                    sensorsInfo = JsonConvert.DeserializeObject<List<SensorInfo>>(result);
+                    sensorsInfo = JsonConvert.DeserializeObject<List<T>>(result);
                 }
             }
             //var sensorSpecifications = new List<History>();
@@ -101,18 +100,18 @@ namespace IoTSensorPortal.DataProvider
             counter += 5;
         }
 
-        public Dictionary<string, Guid> GetAllSensorsTags()
-        {
-            var sensorsInfo = GetAllSensorsInfo();
-            
-            Dictionary<string, Guid> list = new Dictionary<string, Guid>();
+        //public Dictionary<string, Guid> GetAllSensorsTags()
+        //{
+        //    var sensorsInfo = GetAllSensorsInfo();
 
-            foreach (var sensorInfo in sensorsInfo)
-            {
-                list.Add(sensorInfo.Tag, sensorInfo.SensorId);
-            }
+        //    Dictionary<string, Guid> list = new Dictionary<string, Guid>();
 
-            return list;
-        }
+        //    foreach (var sensorInfo in sensorsInfo)
+        //    {
+        //        list.Add(sensorInfo.Tag, sensorInfo.SensorId);
+        //    }
+
+        //    return list;
+        //}
     }
 }

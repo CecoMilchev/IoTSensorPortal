@@ -1,0 +1,74 @@
+﻿@model IoTSensorPortal.Models.FullDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FullDetailsViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RefreshRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RefreshRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPublic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPublic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Period)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Period)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -3,6 +3,7 @@ using IoTSensorPortal.Data;
 using IoTSensorPortal.Data.DataModels;
 using IoTSensorPortal.Data.Models;
 using IoTSensorPortal.DataProvider.Contracts;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,73 +23,78 @@ namespace IoTSensorPortal.DataService
             this.provider = provider;
         }
 
-        public Dictionary<string, Guid> GetAllSensors()
+        public Guid CreateSensor(string owner, ISensorRegisterModel model)
         {
-            return this.provider.GetAllSensorsTags();
-        }
-
-        public void RegisterSensor(string username)
-        {
-            RegisteredUser user = this.GetUser(username);
+            RegisteredUser user = this.GetUser(owner);
             DateTime createDate = DateTime.Now;
             List<History> history = new List<History> { new History() { Id = Guid.NewGuid(), UpdateDate = createDate } };
-
             Sensor sensor = new Sensor
             {
                 Id = Guid.NewGuid(),
                 History = history,
-                IsPublic = true,
+                IsPublic = model.IsPublic,
                 LastUpdated = createDate,
-                MaxValue = 20,
-                MinValue = 13,
-                Name = "Sensor 1",
-                Owner = user,
-                OwnerId = user.Id,
-                RefreshRate = 10,
-                SharedWithUsers = new List<RegisteredUser>(),
-                Url = "f1796a28-642e-401f-8129-fd7465417061",
+                MaxValue = model.MaxValue,
+                MinValue = model.MinValue,
+                Name = model.Name,
+                RefreshRate = model.RefreshRate,
+                Url = model.Url,
                 CurrentValue = "25"
             };
-
-            this.context.Sensors.Add(sensor);
-
+            user.OwnSensors.Add(sensor);
             this.context.SaveChanges();
-        }
 
-        //4.3 Modify existing sensor
-        public void EditSensor(Guid id, SensorModel model)
+            return sensor.Id;
+        }
+        public string ReadSensor(Guid id)
         {
+            Sensor sensor =  this.context.Sensors.Find(id);
+            return JsonConvert.SerializeObject(sensor);
 
         }
-
-        public void DeleteSensor(Guid id)
+        public Guid UpdateSensor(Guid id, ISensorRegisterModel model)
         {
-
+            return id;
         }
-
-        //4.4 Share a private sensor
-        public void ShareTo(string sharedToUser, Guid sensorId)
+        public string DeleteSensor(Guid id)
         {
-
+            return "fafaf";
         }
 
-        //4.2 View list of own sensors 
-        public IEnumerable<SensorModel> GetUserOwn(string userName)
+        public string ShareTo(string sharedToUser, Guid sensorId)
+        {
+            return "  ";
+        }
+        
+        public IDictionary<Guid, string> GetPublicList()
+        {
+            //return this.context.Sensors.Where(s => s.IsPublic == true).ToList();
+
+            return null;
+        }
+        public IDictionary<Guid, string> GetUserOwn(string userName)
         {
             return null;
         }
-
-        public IEnumerable<SensorModel> GetSharedToUser(string userName)
+        public IDictionary<Guid, string> GetSharedToUser(string userName)
         {
+            //RegisteredUser user = this.GetUser(username);
+
+            //return this.context.Sensors.Where(s => s.OwnerId == user.Id)
+            //    .Select(s => new SensorModel()
+            //    {
+            //        //URL = s.Url,
+            //        //Tag = s.Name
+            //    }).ToList();
             return null;
         }
+        
 
-        //3.3 View public sensors
-        public List<Sensor> GetAllPublicSensors()
+        public IDictionary<Guid, string> GetAllSensorsList()
         {
-            return this.context.Sensors.Where(s => s.IsPublic == true).ToList();
-        }
-
+            return null;
+        } //Admin only action
+       
         //Stored data should be used when showing sensor historical data.
         public IDictionary<DateTime, int> GetHistory(Guid sensorId, TimeSpan period)
         {
@@ -101,6 +107,10 @@ namespace IoTSensorPortal.DataService
         {
             this.provider.Update();
         }
+        public IEnumerable<T> GetSensorSpecifications<T>()
+        {
+            return this.provider.GetAllSensorsInfo<T>();
+        }
 
         //4.1 Register new sensor The newly created sensor should have its own:
 
@@ -109,18 +119,6 @@ namespace IoTSensorPortal.DataService
         //{
         //    return await this.provider.GetAllSensorsInfo();
         //}
-
-        public IEnumerable<SensorModel> GetAllSensorsForUser(string username)
-        {
-            RegisteredUser user = this.GetUser(username);
-
-            return this.context.Sensors.Where(s => s.OwnerId == user.Id)
-                .Select(s => new SensorModel()
-                {
-                    //URL = s.Url,
-                    //Tag = s.Name
-                }).ToList();
-        }
 
         private RegisteredUser GetUser(string username)
         {
