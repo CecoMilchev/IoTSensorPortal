@@ -90,7 +90,7 @@ namespace IoTSensorPortal.DataService
         {
             var result = this.context.Sensors.
                 Where(x => x.IsPublic == true).
-                Select(x => $"{x.Id}:{x.Name}`s {x.Owner.UserName}").
+                Select(x => x.Id + ":" +x.Name + "`s " + x.Owner.UserName).
                 ToArray();
             return result;
         }
