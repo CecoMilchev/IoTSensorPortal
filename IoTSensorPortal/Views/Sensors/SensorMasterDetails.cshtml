@@ -1,0 +1,23 @@
+﻿@model IoTSensorPortal.Models.SensorMasterDetailViewModel
+
+@{
+    ViewBag.Title = "SensorMasterDetail";
+}
+<main class="main-flex">
+    <aside id="SensorMasterList">
+        <ul>
+            @foreach (var item in Model.Sensors)
+            {
+                <li>
+                    <button value="@item.Title"
+                            class="btn-details"
+                            id="@Url.Action("Details", "Sensors", new { id = item.Id })"></button>
+                </li>
+            }
+        </ul>
+    </aside>
+
+    <div id="sensor-details">
+
+    </div>
+</main>

@@ -1,0 +1,17 @@
+﻿@model IoTSensorPortal.Models.SensorSpecificationViewModel
+
+<div>
+    <h4>Sensor Specification</h4><hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.SensorId)</dt>
+        <dd>@Html.DisplayFor(model => model.SensorId)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Tag)</dt>
+        <dd>@Html.DisplayFor(model => model.Tag)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Description)</dt>
+        <dd>@Html.DisplayFor(model => model.Description)</dd>
+        <dt>@Html.DisplayNameFor(model => model.MinPollingIntervalInSeconds)</dt>
+        <dd>@Html.DisplayFor(model => model.MinPollingIntervalInSeconds)</dd>
+        <dt>@Html.DisplayNameFor(model => model.MeasureType)</dt>
+        <dd>@Html.DisplayFor(model => model.MeasureType)</dd>
+    </dl>
+</div>

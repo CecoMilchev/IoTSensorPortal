@@ -6,18 +6,10 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/LandingPage.css")
     @Scripts.Render("~/bundles/modernizr")
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="~/Content/css/materialize.min.css" rel="stylesheet" type="text/css" />
-
-
 </head>
-
-
 <body>
-
-
-
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -30,7 +22,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("View Public Sensors", "ViewPublicSensors", "Sensors", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("View Public Sensors", "PublicList", "Sensors", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, null)</li>
                     @if (this.User.IsInRole("Admin"))
                     {
@@ -38,14 +30,17 @@
                     }
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Add New Sensor", "Create", "Sensors", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Register Sensor", "Create", "Sensors", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Sensor Details", "Details", "Sensors", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Edit Sensor", "Edit", "Sensors", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Delete Sensor", "Delete", "Sensors", new { area = "" }, null)</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    
+
 
     <div class="container body-content">
         @RenderBody()
