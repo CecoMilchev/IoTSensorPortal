@@ -11,6 +11,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">@User.Identity.Name<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>@Html.ActionLink("My Profile", "Index", "Manage", routeValues: new { area = string.Empty }, htmlAttributes: new { title = "Manage" })</li>
+                        <li>@Html.ActionLink("My Sensors", "OwnList", "Sensors", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Create Sensor", "Create", "Sensors", new { area = "" }, null)</li>
                         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
                     </ul>
                 </li>

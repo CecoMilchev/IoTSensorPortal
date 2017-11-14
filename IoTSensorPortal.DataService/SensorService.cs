@@ -90,7 +90,7 @@ namespace IoTSensorPortal.DataService
         {
             var result = this.context.Sensors.
                 Where(x => x.IsPublic == true).
-                Select(x => x.Name + " : " +x.CurrentValue + " - Owner: " + x.Owner.UserName).
+                Select(x => x.Name + " : " +x.CurrentValue + "; Owner: " + x.Owner.UserName).
                 ToArray();
             return result;
         }
@@ -98,7 +98,7 @@ namespace IoTSensorPortal.DataService
         public IList<string> GetUserOwn(string userName)
         {
             var result = this.context.Users.First(x => userName == x.UserName).
-                OwnSensors.Select(x => x.Name +"`s" + userName).
+                OwnSensors.Select(x => x.Name + " : " + x.CurrentValue).
                 ToArray();
             return result;
         }
@@ -106,7 +106,7 @@ namespace IoTSensorPortal.DataService
         public IList<string> GetSharedToUser(string userName)
         {
             var result = this.context.Users.First(x => userName == x.UserName).
-                SharedSensors.Select(x => $"{x.Id}:{x.Name}`s {userName}").
+                SharedSensors.Select(x => x.Id + " " + x.Name + " : " + x.Owner+"`s  ").
                 ToArray();
             return result;
         }
@@ -114,7 +114,7 @@ namespace IoTSensorPortal.DataService
         //Admin only action
         public IList<string> GetAllSensorsList()
         {
-            var result = this.context.Sensors.Select(x => $"{x.Id}:{x.Name}`s {x.Owner.UserName}").ToArray();
+            var result = this.context.Sensors.Select(x => x.Id + " " + x.Name + " " + x.LastUpdated + " " + (x.IsPublic?"Public":"Private") + " " + x.RefreshRate).ToArray();
             return result;
         }
 

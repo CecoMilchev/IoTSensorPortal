@@ -1,0 +1,12 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "OwnList";
+}
+
+<h2>OwnList</h2>
+
+@foreach (var item in @Model)
+{
+    <h3>@item</h3>
+}
+

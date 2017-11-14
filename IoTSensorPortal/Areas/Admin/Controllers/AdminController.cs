@@ -1,5 +1,6 @@
 ﻿using Bytes2you.Validation;
 using IoTSensorPortal.Areas.Admin.Models;
+using IoTSensorPortal.DataService;
 using IoTSensorPortal.Models;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,13 +13,22 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
     {
         private readonly ApplicationDbContext dbContext;
         private readonly ApplicationUserManager userManager;
-
-        public AdminController(ApplicationUserManager userManager, ApplicationDbContext dbContext)
+        private readonly ISensorService sensorService;
+        
+        public AdminController(ApplicationUserManager userManager, ApplicationDbContext dbContext,
+            ISensorService sensorService)
         {
             Guard.WhenArgument<ApplicationDbContext>(dbContext, "dbContext").IsNull();
             this.dbContext = dbContext;
             Guard.WhenArgument<ApplicationUserManager>(userManager, "userManager").IsNull();
             this.userManager = userManager;
+            Guard.WhenArgument<ISensorService>(sensorService, "sensorService").IsNull();
+            this.sensorService = sensorService;
+        }
+
+        public ActionResult Index()
+        {
+            return View();
         }
 
         public ActionResult AllUsers()
@@ -44,7 +54,7 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
         public async Task<ActionResult> EditUser(UserViewModel userViewModel)
         {
             if (userViewModel.IsAdmin)
-            { 
+            {
                 await this.userManager.AddToRoleAsync(userViewModel.Id, "Admin");
             }
             else
@@ -55,9 +65,10 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
             return this.RedirectToAction("AllUsers");
         }
 
-        //public ActionResult GetAllSensors()
-        //{
-        //    var allSensorsViewModel = this.dbContext.
-        //}
+        public ActionResult AllSensors()
+        {
+            var allSensorsViewModel = this.sensorService.GetAllSensorsList();
+            return View(allSensorsViewModel);
+        }
     }
 }

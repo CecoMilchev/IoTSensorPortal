@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IoTSensorPortal.Data.Models;
+using System;
 using System.Collections.Generic;
 
 namespace IoTSensorPortal.DataService
@@ -27,7 +28,7 @@ namespace IoTSensorPortal.DataService
         IDictionary<DateTime, int> GetHistory(Guid sensorId, TimeSpan period);
 
         IEnumerable<T> GetSensorSpecifications<T>();
-
+        
         void Update(); //update to controller to update sensor specification every 30min
     }
 }

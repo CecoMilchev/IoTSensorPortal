@@ -86,10 +86,10 @@ namespace IoTSensorPortal.Controllers
         }
 
         [Authorize]
-        public ActionResult OwnList(ListViewModel model)
+        public ActionResult OwnList()
         {
-            //var model = this.service.GetUserOwn(this.User.Identity.Name);
-            return View();
+            var model = this.service.GetUserOwn(this.User.Identity.Name);
+            return View(model);
         }
 
         [Authorize]
