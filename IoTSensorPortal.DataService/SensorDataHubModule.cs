@@ -1,6 +1,5 @@
 
 using Bytes2you.Validation;
-using IoTSensorPortal.Data.DataModels;
 using IoTSensorPortal.DataProvider.Contracts;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,10 +18,10 @@ namespace IoTSensorPortal.DataService
             this.provider = provider;
         }
 
-        public async Task<IEnumerable<SensorModel>> GetAllSensorsInfo()
-        {
-            return null;//await this.provider.GetAllSensorsInfo();
-        }
+        //public async Task<IEnumerable<>> GetAllSensorsInfo()
+        //{
+        //    return null;//await this.provider.GetAllSensorsInfo();
+        //}
         //6.1 Sensor Data Polling
 
         //The module should poll data from sensors based on their pooling interval setting. 

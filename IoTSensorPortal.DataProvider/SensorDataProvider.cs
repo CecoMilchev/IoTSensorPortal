@@ -53,13 +53,13 @@ namespace IoTSensorPortal.DataProvider
             return sensorState;
         }
 
-        public void Update(int counter)
+        public void Update()
         {
             var sensors = this.context.Sensors.ToList();
 
             foreach (var sensor in sensors)
             {
-                if (counter % sensor.RefreshRate == 0)
+                if (DateTime.Now - sensor.LastUpdated >= TimeSpan.FromSeconds(sensor.RefreshRate))
                 {
                     var newState = GetRealTimeValue(sensor.Url);
                     newState.SensorId = sensor.Id;
@@ -70,7 +70,6 @@ namespace IoTSensorPortal.DataProvider
                 }
             }
             context.SaveChanges();
-            counter += 5;
         }
     }
 }

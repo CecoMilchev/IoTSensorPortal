@@ -38,7 +38,7 @@ namespace IoTSensorPortal.DataService
                 Name = model.Name,
                 RefreshRate = model.RefreshRate,
                 Url = model.Url,
-                CurrentValue = "25"
+                CurrentValue = null
             };
             user.OwnSensors.Add(sensor);
             this.context.SaveChanges();
@@ -90,7 +90,7 @@ namespace IoTSensorPortal.DataService
         {
             var result = this.context.Sensors.
                 Where(x => x.IsPublic == true).
-                Select(x => x.Id + ":" +x.Name + "`s " + x.Owner.UserName).
+                Select(x => x.Name + " : " +x.CurrentValue + " - Owner: " + x.Owner.UserName).
                 ToArray();
             return result;
         }
@@ -98,7 +98,7 @@ namespace IoTSensorPortal.DataService
         public IList<string> GetUserOwn(string userName)
         {
             var result = this.context.Users.First(x => userName == x.UserName).
-                OwnSensors.Select(x => $"{x.Id}:{x.Name}`s {userName}").
+                OwnSensors.Select(x => x.Name +"`s" + userName).
                 ToArray();
             return result;
         }
@@ -141,9 +141,9 @@ namespace IoTSensorPortal.DataService
             return user;
         }
 
-        public void Update(int counter)
+        public void Update()
         {
-            throw new NotImplementedException();
+            this.provider.Update();
         }
     }
 }

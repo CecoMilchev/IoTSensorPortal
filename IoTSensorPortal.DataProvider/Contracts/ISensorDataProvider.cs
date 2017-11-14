@@ -1,5 +1,4 @@
-﻿using IoTSensorPortal.Data.DataModels;
-using IoTSensorPortal.Data.Models;
+﻿using IoTSensorPortal.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,6 +13,6 @@ namespace IoTSensorPortal.DataProvider.Contracts
         
         History GetRealTimeValue(string URL);
 
-        void Update(int counter);
+        void Update();
     }
 }
