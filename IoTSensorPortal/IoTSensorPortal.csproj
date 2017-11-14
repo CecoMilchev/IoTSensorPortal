@@ -296,11 +296,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Sensors\Create.cshtml" />
-    <Content Include="Views\Sensors\Details.cshtml" />
     <Content Include="Views\Sensors\Specification.cshtml" />
     <Content Include="Views\Sensors\Update.cshtml" />
     <Content Include="Views\Sensors\MasterDetails.cshtml" />
     <Content Include="Views\Sensors\OwnList.cshtml" />
+    <Content Include="Views\Sensors\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
