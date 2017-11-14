@@ -290,11 +290,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Sensors\SensorCreate.cshtml" />
-    <Content Include="Views\Sensors\SensorDetails.cshtml" />
-    <Content Include="Views\Sensors\SensorSpecification.cshtml" />
-    <Content Include="Views\Sensors\SensorUpdate.cshtml" />
-    <Content Include="Views\Sensors\SensorMasterDetails.cshtml" />
+    <Content Include="Views\Sensors\Create.cshtml" />
+    <Content Include="Views\Sensors\Details.cshtml" />
+    <Content Include="Views\Sensors\Specification.cshtml" />
+    <Content Include="Views\Sensors\Update.cshtml" />
+    <Content Include="Views\Sensors\MasterDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

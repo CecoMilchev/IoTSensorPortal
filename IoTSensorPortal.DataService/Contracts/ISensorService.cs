@@ -14,15 +14,15 @@ namespace IoTSensorPortal.DataService
         //D
         string DeleteSensor(Guid id);
 
-        string ShareTo(string registeredUser, Guid sensorId);
+        string ShareTo(Guid registeredUser, Guid sensorId);
 
-        IDictionary<Guid, string> GetAllSensorsList(); //admin action
+        IList<string> GetAllSensorsList(); //admin action
 
-        IDictionary<Guid, string> GetPublicList();
+        IList<string> GetPublicList();
 
-        IDictionary<Guid, string> GetUserOwn(string userName);
+        IList<string> GetUserOwn(string userName); //ako e string pestim join-ove v bazata
 
-        IDictionary<Guid, string> GetSharedToUser(string userName);
+        IList<string> GetSharedToUser(string userName); //i tuk taka
 
         IDictionary<DateTime, int> GetHistory(Guid sensorId, TimeSpan period);
 

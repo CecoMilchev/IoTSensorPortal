@@ -1,6 +1,5 @@
 ﻿using Bytes2you.Validation;
 using IoTSensorPortal.Data;
-using IoTSensorPortal.Data.DataModels;
 using IoTSensorPortal.Data.Models;
 using IoTSensorPortal.DataProvider.Contracts;
 using Newtonsoft.Json;
@@ -25,7 +24,7 @@ namespace IoTSensorPortal.DataService
 
         public Guid CreateSensor(string owner, ISensorRegisterModel model)
         {
-            RegisteredUser user = this.GetUser(owner);
+            RegisteredUser user = this.context.Users.First(x => x.UserName == owner);
             DateTime createDate = DateTime.Now;
             List<History> history = new List<History> { new History() { Id = Guid.NewGuid(), UpdateDate = createDate } };
             Sensor sensor = new Sensor
@@ -46,95 +45,105 @@ namespace IoTSensorPortal.DataService
 
             return sensor.Id;
         }
-        
+
         public string ReadSensor(Guid id)
         {
-            Sensor sensor =  this.context.Sensors.Find(id);
+            Sensor sensor = this.context.Sensors.Find(id);
             return JsonConvert.SerializeObject(sensor, new JsonSerializerSettings()
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
 
         }
+
         public Guid UpdateSensor(Guid id, ISensorRegisterModel model)
         {
+            var sensor = this.context.Sensors.Find(id);
+            sensor.Url = model.Url; //proverka dali se e smenil typa ako da create sensor i tiq danni
+            sensor.Name = model.Name;
+            sensor.RefreshRate = model.RefreshRate;
+            sensor.MinValue = model.MinValue;
+            sensor.MaxValue = model.MaxValue;
+            sensor.IsPublic = model.IsPublic;
+            this.context.SaveChanges();
+
             return id;
         }
+
         public string DeleteSensor(Guid id)
         {
-            return "fafaf";
+            var sensor = this.context.Sensors.Find(id);
+            this.context.Sensors.Remove(sensor);
+            this.context.SaveChanges();
+            return $"Sensor was removed";
         }
 
-        public string ShareTo(string sharedToUser, Guid sensorId)
+        public string ShareTo(Guid sharedToUser, Guid sensorId)
         {
-            return "  ";
+            var user = GetUser(sharedToUser);
+            this.context.Sensors.Find(sensorId).SharedWithUsers.Add(user);
+            this.context.SaveChanges();
+            return $"Shared to {user.UserName}";
         }
-        
-        public IDictionary<Guid, string> GetPublicList()
-        {
-            //return this.context.Sensors.Where(s => s.IsPublic == true).ToList();
 
-            return null;
-        }
-        public IDictionary<Guid, string> GetUserOwn(string userName)
+        public IList<string> GetPublicList()
         {
-            return null;
+            var result = this.context.Sensors.
+                Where(x => x.IsPublic == true).
+                Select(x => $"{x.Id}:{x.Name}`s {x.Owner.UserName}").
+                ToArray();
+            return result;
         }
-        public IDictionary<Guid, string> GetSharedToUser(string userName)
-        {
-            //RegisteredUser user = this.GetUser(username);
 
-            //return this.context.Sensors.Where(s => s.OwnerId == user.Id)
-            //    .Select(s => new SensorModel()
-            //    {
-            //        //URL = s.Url,
-            //        //Tag = s.Name
-            //    }).ToList();
-            return null;
-        }
-        
-
-        public IDictionary<Guid, string> GetAllSensorsList()
+        public IList<string> GetUserOwn(string userName)
         {
-            return null;
-        } //Admin only action
-       
-        //Stored data should be used when showing sensor historical data.
+            var result = this.context.Users.First(x => userName == x.UserName).
+                OwnSensors.Select(x => $"{x.Id}:{x.Name}`s {userName}").
+                ToArray();
+            return result;
+        }
+
+        public IList<string> GetSharedToUser(string userName)
+        {
+            var result = this.context.Users.First(x => userName == x.UserName).
+                SharedSensors.Select(x => $"{x.Id}:{x.Name}`s {userName}").
+                ToArray();
+            return result;
+        }
+
+        //Admin only action
+        public IList<string> GetAllSensorsList()
+        {
+            var result = this.context.Sensors.Select(x => $"{x.Id}:{x.Name}`s {x.Owner.UserName}").ToArray();
+            return result;
+        }
+
         public IDictionary<DateTime, int> GetHistory(Guid sensorId, TimeSpan period)
         {
-
-            // Should return id for created sensor to redirect detailed view
             return null;
         }
 
-        public void Update(int counter)
-        {
-            this.provider.Update(counter);
-        }
         public IEnumerable<T> GetSensorSpecifications<T>()
         {
-            return this.provider.GetAllSensorsInfo<T>();
+            var allTypes = this.provider.GetAllSensorsInfo<T>();
+            return allTypes;
         }
 
-        //4.1 Register new sensor The newly created sensor should have its own:
-
-
-        //public async Task<IEnumerable<string>> GetAllSensors()
-        //{
-        //    return await this.provider.GetAllSensorsInfo();
-        //}
-
-        private RegisteredUser GetUser(string username)
+        private RegisteredUser GetUser(Guid userId)
         {
-            var user = this.context.Users.First(u => u.UserName == username);
+            var user = this.context.Users.Find(userId);
 
             if (user == null)
             {
-                throw new ArgumentNullException($"There is no user with username {username}!");
+                throw new ArgumentNullException($"There is no user with key {userId}!");
             }
 
             return user;
         }
 
+        public void Update(int counter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

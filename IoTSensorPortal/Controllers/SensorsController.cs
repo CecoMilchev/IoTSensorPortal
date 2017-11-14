@@ -1,10 +1,12 @@
 ﻿using Bytes2you.Validation;
 using IoTSensorPortal.DataService;
 using IoTSensorPortal.Models;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace IoTSensorPortal.Controllers
 {
@@ -27,9 +29,9 @@ namespace IoTSensorPortal.Controllers
             this.GetSensorTypes();
         }
 
-        private IEnumerable<SensorSpecificationViewModel> GetSensorTypes()
+        private IEnumerable<SpecificationViewModel> GetSensorTypes()
         {
-            var sensorSpecification = this.service.GetSensorSpecifications<SensorSpecificationViewModel>();
+            var sensorSpecification = this.service.GetSensorSpecifications<SpecificationViewModel>();
             return sensorSpecification;
         }
 
@@ -40,7 +42,7 @@ namespace IoTSensorPortal.Controllers
         }
 
         [Authorize, ValidateAntiForgeryToken, HttpPost]
-        public ActionResult Create(SensorCreateViewModel model)
+        public ActionResult Create(CreateViewModel model)
         {
             if (this.ModelState.IsValid)
             {
@@ -51,7 +53,7 @@ namespace IoTSensorPortal.Controllers
         }
 
         [Authorize, ValidateAntiForgeryToken, HttpPost]
-        public ActionResult Edit(SensorEditViewModel model)
+        public ActionResult Edit(EditViewModel model)
         {
             if (model.Id != null && this.ModelState.IsValid)
             {
@@ -75,7 +77,7 @@ namespace IoTSensorPortal.Controllers
         public ActionResult Details(Guid id)
         {
             string jsonString = this.service.ReadSensor(id);
-            var model = JsonConvert.DeserializeObject<SensorDetailsViewModel>(jsonString);
+            var model = JsonConvert.DeserializeObject<DetailsViewModel>(jsonString);
             //kak da go kast kum viewModel
             return View(model);
         }
@@ -87,7 +89,7 @@ namespace IoTSensorPortal.Controllers
         }
 
         [Authorize]
-        public ActionResult OwnList(SensorListViewModel model)
+        public ActionResult OwnList(ListViewModel model)
         {
             //var model = this.service.GetUserOwn(this.User.Identity.Name);
             return View();

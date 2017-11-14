@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace IoTSensorPortal.Models
 {
     //Crud create
-    public class SensorCreateViewModel : ISensorRegisterModel
+    public class CreateViewModel : ISensorRegisterModel
     {
         [Required, Display(Name = "Sensor name")]
         public string Name { get; set; }
@@ -28,7 +28,7 @@ namespace IoTSensorPortal.Models
     }
 
     //cRud read
-    public class SensorDetailsViewModel
+    public class DetailsViewModel
     {
         //hidden
         public Guid Id { get; set; }
@@ -53,7 +53,7 @@ namespace IoTSensorPortal.Models
     }
 
     //crUd update
-    public class SensorEditViewModel : SensorCreateViewModel
+    public class EditViewModel : CreateViewModel
     {
         [Required] //hidden in view
         public Guid Id { get; set; }
@@ -62,14 +62,14 @@ namespace IoTSensorPortal.Models
     //cruD delete = only delete Button in Details
 
     //public, private/own, sharedToUser
-    public class SensorListViewModel
+    public class ListViewModel
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
     }
 
     //ICB api - sensor type
-    public class SensorSpecificationViewModel
+    public class SpecificationViewModel
     {
         public string SensorId { get; set; }
         public string Tag { get; set; }
@@ -78,10 +78,10 @@ namespace IoTSensorPortal.Models
         public string MeasureType { get; set; }
     }
 
-    public class SensorMasterDetailViewModel
+    public class MasterDetailViewModel
     {
-        public SensorDetailsViewModel Selection { get; set; }
+        public DetailsViewModel Selection { get; set; }
         public Guid SelectedItem { get; set; }
-        public List<SensorListViewModel> Sensors { get; set; }
+        public List<ListViewModel> Sensors { get; set; }
     }
 }
