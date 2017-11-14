@@ -27,9 +27,9 @@ namespace IoTSensorPortal.Controllers
             this.GetSensorTypes();
         }
 
-        private IEnumerable<SpecificationViewModel> GetSensorTypes()
+        private IEnumerable<SensorSpecificationViewModel> GetSensorTypes()
         {
-            var sensorSpecification = this.service.GetSensorSpecifications<SpecificationViewModel>();
+            var sensorSpecification = this.service.GetSensorSpecifications<SensorSpecificationViewModel>();
             return sensorSpecification;
         }
 
@@ -40,7 +40,7 @@ namespace IoTSensorPortal.Controllers
         }
 
         [Authorize, ValidateAntiForgeryToken, HttpPost]
-        public ActionResult Create(SensorRegisterViewModel model)
+        public ActionResult Create(SensorCreateViewModel model)
         {
             if (this.ModelState.IsValid)
             {
@@ -51,7 +51,7 @@ namespace IoTSensorPortal.Controllers
         }
 
         [Authorize, ValidateAntiForgeryToken, HttpPost]
-        public ActionResult Edit(EditViewModel model)
+        public ActionResult Edit(SensorEditViewModel model)
         {
             if (model.Id != null && this.ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace IoTSensorPortal.Controllers
         public ActionResult Details(Guid id)
         {
             string jsonString = this.service.ReadSensor(id);
-            var model = JsonConvert.DeserializeObject<FullDetailsViewModel>(jsonString);
+            var model = JsonConvert.DeserializeObject<SensorDetailsViewModel>(jsonString);
             //kak da go kast kum viewModel
             return View(model);
         }
