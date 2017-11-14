@@ -48,8 +48,11 @@ namespace IoTSensorPortal.Models
         [Display(Name = "Maximum allowed value")]
         public int MaxValue { get; set; }
 
-        [Display(Name = "Publicly visible")]
+        [Display(Name = "Public")]
         public bool IsPublic { get; set; }
+
+        [Display(Name = "Current value")]
+        public string CurrentValue { get; set; }
     }
 
     //crUd update
