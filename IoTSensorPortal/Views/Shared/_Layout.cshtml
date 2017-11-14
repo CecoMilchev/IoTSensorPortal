@@ -31,9 +31,6 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Register Sensor", "Create", "Sensors", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("Sensor Details", "Details", "Sensors", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("Edit Sensor", "Edit", "Sensors", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("Delete Sensor", "Delete", "Sensors", new { area = "" }, null)</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
