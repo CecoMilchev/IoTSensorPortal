@@ -221,7 +221,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\SensorMasterDetailViewModel.cs" />
     <Compile Include="Models\SensorViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -301,7 +300,6 @@
     <Content Include="Views\Sensors\Specification.cshtml" />
     <Content Include="Views\Sensors\Update.cshtml" />
     <Content Include="Views\Sensors\MasterDetails.cshtml" />
-    <Content Include="Views\Sensors\PublicList.cshtml" />
     <Content Include="Views\Sensors\OwnList.cshtml" />
   </ItemGroup>
   <ItemGroup>

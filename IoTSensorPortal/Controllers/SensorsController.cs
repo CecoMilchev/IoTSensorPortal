@@ -79,7 +79,7 @@ namespace IoTSensorPortal.Controllers
             return View(model);
         }
 
-        public ActionResult PublicList()
+        public ActionResult MasterDetails()
         {
             var model = this.service.GetPublicList();
             return View(model);

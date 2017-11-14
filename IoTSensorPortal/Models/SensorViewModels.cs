@@ -64,13 +64,6 @@ namespace IoTSensorPortal.Models
 
     //cruD delete = only delete Button in Details
 
-    //public, private/own, sharedToUser
-    public class ListViewModel
-    {
-        public Guid Id { get; set; }
-        public string Title { get; set; }
-    }
-
     //ICB api - sensor type
     public class SpecificationViewModel
     {
@@ -85,6 +78,6 @@ namespace IoTSensorPortal.Models
     {
         public DetailsViewModel Selection { get; set; }
         public Guid SelectedItem { get; set; }
-        public List<ListViewModel> Sensors { get; set; }
+        public List<string> Sensors { get; set; }
     }
 }

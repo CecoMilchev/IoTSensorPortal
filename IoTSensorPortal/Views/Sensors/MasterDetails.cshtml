@@ -1,4 +1,4 @@
-﻿@model IoTSensorPortal.Models.SensorMasterDetailViewModel
+﻿@model IEnumerable<string>
 
 @{
     ViewBag.Title = "SensorMasterDetail";
@@ -9,9 +9,9 @@
             @foreach (var item in Model)
             {
                 <li>
-                    <button value="@item.Title"
+                    <button value="@item.Split(':')[1]"
                             class="btn-details"
-                            id="@Url.Action("Details", "Sensors", new { id = item.Id })"></button>
+                            id="@Url.Action("Details", "Sensors", new { id = item.Split(':')[0]})"></button>
                 </li>
             }
         </ul>
