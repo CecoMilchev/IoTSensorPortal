@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    color: #fff;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +22,21 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.navbar-header img {
+    float: left;
+    height: 3rem;
+    margin: 10px 10px 0 10px;
+}
+
+.nav.navbar-nav li a{
+    color: #fff;
+}
+
+#logoutForm > div > ul > li > ul > li > a {
+    color: #000000;
+}
+body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-collapse.collapse > ul > li.dropdown.open > ul > li > a {
+ color:black
 }
