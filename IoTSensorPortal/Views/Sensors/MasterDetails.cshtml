@@ -6,7 +6,7 @@
         @foreach (var item in Model)
             {
             <div>
-                <button id="@Url.Action("Details", "Sensors", new { id = item.Split(':')[0]})"
+                <button id="@Url.Action("Details", "Sensors",  new { area = "", id = item.Split(':')[0]}, null)"
                         onclick="loadDetails(id)">
                     @item.Split(':')[1]
                     </button>

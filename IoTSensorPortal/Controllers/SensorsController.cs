@@ -49,6 +49,14 @@ namespace IoTSensorPortal.Controllers
             return this.View();
         }
 
+        [Authorize]
+        public ActionResult Edit(Guid id)
+        {
+            string jsonString = this.service.ReadSensor(id);
+            var model = JsonConvert.DeserializeObject<DetailsViewModel>(jsonString);
+            return View(model);
+        }
+
         [Authorize, ValidateAntiForgeryToken, HttpPost]
         public ActionResult Edit(EditViewModel model)
         {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTSensorPortal", "IoTSensorPortal\IoTSensorPortal.csproj", "{D9C3DD4C-1CD8-464A-A8F0-4246FC92EDE4}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTSensorPortal.DataService", "IoTSensorPortal.DataService\IoTSensorPortal.DataService.csproj", "{9CA45C61-8B87-45D9-A1D3-457D3201C84F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{DB50B1DC-43B2-4B90-84D7-30300BF71E99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTSensorPortal.DataService.UnitTests", "IoTSensorPortal.DataService.UnitTests\IoTSensorPortal.DataService.UnitTests.csproj", "{D05694A7-E394-494D-AE8B-2738ED8E0B41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTSensorPortal.DataProvider.UnitTests", "IoTSensorPortal.DataProvider.UnitTests\IoTSensorPortal.DataProvider.UnitTests.csproj", "{0ED40898-E4C7-4D91-B139-88DFFD3AD78F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,14 @@ Global
 		{9CA45C61-8B87-45D9-A1D3-457D3201C84F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CA45C61-8B87-45D9-A1D3-457D3201C84F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CA45C61-8B87-45D9-A1D3-457D3201C84F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D05694A7-E394-494D-AE8B-2738ED8E0B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D05694A7-E394-494D-AE8B-2738ED8E0B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D05694A7-E394-494D-AE8B-2738ED8E0B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D05694A7-E394-494D-AE8B-2738ED8E0B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ED40898-E4C7-4D91-B139-88DFFD3AD78F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ED40898-E4C7-4D91-B139-88DFFD3AD78F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ED40898-E4C7-4D91-B139-88DFFD3AD78F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ED40898-E4C7-4D91-B139-88DFFD3AD78F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

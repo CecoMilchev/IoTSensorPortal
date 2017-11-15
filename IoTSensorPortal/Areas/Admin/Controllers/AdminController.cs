@@ -67,8 +67,8 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
 
         public ActionResult AllSensors()
         {
-            var allSensorsViewModel = this.sensorService.GetAllSensorsList();
-            return View(allSensorsViewModel);
+            var model = this.sensorService.GetPublicList();
+            return View(model);
         }
     }
 }

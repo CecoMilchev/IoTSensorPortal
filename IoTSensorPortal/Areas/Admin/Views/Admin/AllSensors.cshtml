@@ -1,12 +1,37 @@
 ﻿@model IEnumerable<string>
-@{
-    ViewBag.Title = "AllSensors";
-}
 
-<h2>AllSensors</h2>
+<main class="main-flex">
+    <aside id="SensorMasterList">
 
-@foreach (var item in Model)
-{
-    <div>@item</div>
-}
+        @foreach (var item in Model)
+            {
+            <div>
+                <button id="@Url.Action("Details", "Sensors", new { area = "", id = item.Split(':')[0]}, null)"
+                        onclick="loadDetails(id)">
+                    @item.Split(':')[1]
+                </button>
+            </div>
+        }
+    </aside>
 
+    <main id="sensor-details">
+
+    </main>
+</main>
+
+<script>
+    const loadDetails = (url) => {
+        $.ajax(url).done((data) => { $(`#sensor-details`).html(data) });
+    };
+
+    const rangeColor = (min, max) => {
+        let sensorValue = $(`currentValue`);
+
+        //no connection
+        if (!Number(sensorValue.text)) return (sensorValue.text.style.color = `#A9A9A9`);
+
+        if (Number(sensorValue.text) > min && Number(sensorValue.text) < max) {
+            sensorValue.text.style.color = `#7FFF00`; //in range
+        } else { sensorValue.text.style.color = `#FF0000`; } //out range
+    };
+</script>
