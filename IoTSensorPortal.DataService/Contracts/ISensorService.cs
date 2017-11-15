@@ -1,5 +1,4 @@
-﻿using IoTSensorPortal.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace IoTSensorPortal.DataService
@@ -21,9 +20,9 @@ namespace IoTSensorPortal.DataService
 
         List<ListItem> GetPublicList();
 
-        IList<ListItem> GetUserOwn(string userName); //ako e string pestim join-ove v bazata
+        List<ListItem> GetUserOwn(string userName); //ako e string pestim join-ove v bazata
 
-        IList<ListItem> GetSharedToUser(string userName); //i tuk taka
+        List<ListItem> GetSharedToUser(string userName); //i tuk taka
 
         IDictionary<DateTime, int> GetHistory(Guid sensorId, TimeSpan period);
 

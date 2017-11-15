@@ -14,24 +14,13 @@
         }
     </aside>
 
-    @if (Model.SelectedItem != null)
-    {
-        <button id="@Url.Action("Edit", "Sensors", new { area = "",  id = Model.SelectedItem })"
-                onclick="loadEdit(id)">
-            Edit Sensor
-        </button>
-        <button id="@Url.Action("Delete", "Sensors", new { area = "",  id = Model.SelectedItem })"
-                onclick="loadEdit(id)">
-            Delete Sensor
-        </button>
-    }
     <main id="sensor-details">
+
     </main>
 </main>
 
 <script>
     const loadDetails = (url => $(`#sensor-details`).load(url));
-    const loadEdit = (url => $(`#sensor-details`).load(url));
     const changeDropDownItem = (url => $(`#sensor-dropdown`).load(url));
 
     const rangeColor = (min, max) => {

@@ -23,7 +23,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("View Public Sensors", "MasterDetails", "Sensors", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Public Sensors", "PublicList", "Sensors", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, null)</li>
                     @if (this.User.IsInRole("Admin"))
                     {

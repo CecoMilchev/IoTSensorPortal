@@ -1,6 +1,6 @@
 ﻿@model IoTSensorPortal.Models.DetailsViewModel
 
-@{ 
+@{
     Layout = ""; //remove second footer
 }
 
@@ -21,6 +21,4 @@
         <dt>@Html.DisplayNameFor(model => model.CurrentValue)</dt>
         <dd>@Html.DisplayFor(model => model.CurrentValue)</dd>
     </dl>
-    <button>@Html.ActionLink("Edit Sensor", "Edit", "Sensors", new { area = "" }, htmlAttributes: new { id = Model.Id })</button>
-    <button>@Html.ActionLink("Delete Sensor", "Delete", "Sensors", new { area = "" }, null)</button>
 </div>

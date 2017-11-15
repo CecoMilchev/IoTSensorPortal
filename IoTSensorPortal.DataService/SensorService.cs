@@ -96,24 +96,24 @@ namespace IoTSensorPortal.DataService
             return result;
         }
 
-        public IList<ListItem> GetUserOwn(string userName)
+        public List<ListItem> GetUserOwn(string userName)
         {
             var result = this.context.Users.
                 First(x => userName == x.UserName).
                 OwnSensors.
                 Select(x => new ListItem { Id = x.Id, Title = x.Owner.UserName + "`s " + x.Name }).
-                ToArray();
+                ToList();
 
             return result;
         }
 
-        public IList<ListItem> GetSharedToUser(string userName)
+        public List<ListItem> GetSharedToUser(string userName)
         {
             var result = this.context.Users.
                 First(x => userName == x.UserName).
                 SharedSensors.
                 Select(x => new ListItem { Id = x.Id, Title = x.Owner.UserName + "`s " + x.Name }).
-                ToArray();
+                ToList();
 
             return result;
         }

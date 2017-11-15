@@ -1,13 +1,10 @@
 ﻿using Bytes2you.Validation;
 using IoTSensorPortal.DataService;
 using IoTSensorPortal.Models;
-using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace IoTSensorPortal.Controllers
 {
@@ -51,15 +48,16 @@ namespace IoTSensorPortal.Controllers
         }
 
         [Authorize]
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(Guid id) //get the view
         {
             string jsonString = this.service.ReadSensor(id);
-            var model = JsonConvert.DeserializeObject<DetailsViewModel>(jsonString);
-            return View(model);
+            var createModel = JsonConvert.DeserializeObject<CreateViewModel>(jsonString);
+
+            return View(createModel);
         }
 
         [Authorize, ValidateAntiForgeryToken, HttpPost]
-        public ActionResult Edit(EditViewModel model)
+        public ActionResult Edit(EditViewModel model) //post the ne data
         {
             if (model.Id != null && this.ModelState.IsValid)
             {
@@ -88,7 +86,7 @@ namespace IoTSensorPortal.Controllers
             return View(model);
         }
 
-        public ActionResult MasterDetails()
+        public ActionResult PublicList()
         {
             var model = new MasterDetailViewModel { Sensors = this.service.GetPublicList() };
             return View(model);
@@ -97,14 +95,17 @@ namespace IoTSensorPortal.Controllers
         [Authorize]
         public ActionResult OwnList()
         {
-            var model = this.service.GetUserOwn(this.User.Identity.Name);
+            var username = this.User.Identity.Name;
+            var model = new MasterDetailViewModel { Sensors = this.service.GetUserOwn(username) };
             return View(model);
         }
 
         [Authorize]
         public ActionResult SharedToUserList()
         {
-            var model = this.service.GetSharedToUser(this.User.Identity.Name);
+            var username = this.User.Identity.Name;
+            var model = new MasterDetailViewModel { Sensors = this.service.GetSharedToUser(username) };
+
             return View(model);
         }
     }

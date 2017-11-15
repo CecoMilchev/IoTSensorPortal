@@ -297,10 +297,11 @@
     <Content Include="Views\Sensors\Create.cshtml" />
     <Content Include="Views\Sensors\Specification.cshtml" />
     <Content Include="Views\Sensors\Update.cshtml" />
-    <Content Include="Views\Sensors\MasterDetails.cshtml" />
     <Content Include="Views\Sensors\OwnList.cshtml" />
     <Content Include="Views\Sensors\Details.cshtml" />
     <Content Include="Views\Sensors\Edit.cshtml" />
+    <Content Include="Views\Sensors\PublicList.cshtml" />
+    <Content Include="Views\Sensors\SharedToUserList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
