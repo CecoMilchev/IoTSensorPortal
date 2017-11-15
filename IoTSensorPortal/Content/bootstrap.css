@@ -773,7 +773,7 @@ pre code {
   clear: both;
 }
 
-.container:before,
+.container:before,z
 .container:after {
   display: table;
   content: " ";
@@ -4501,7 +4501,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
+  background-color: #033367;
   border-color: #080808;
 }
 

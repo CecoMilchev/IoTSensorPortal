@@ -1,4 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
+
+@Styles.Render("~/Content/css")
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
