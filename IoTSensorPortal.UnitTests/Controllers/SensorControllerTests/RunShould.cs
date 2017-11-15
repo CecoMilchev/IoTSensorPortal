@@ -3,30 +3,28 @@ using IoTSensorPortal.DataService;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace IoTSensorPortal.UnitTests.Controllers.SensorControllerTests
 {
     [TestClass]
-    public class ConstructorShould
+    public class RunShould
     {
         [TestMethod]
-        public void CreateInstance_WhenParametersAreCorrect()
+        public void VerifyServiceMethod_IsCalled()
         {
             //Arrange
             var serviceMock = new Mock<ISensorService>();
-            
-            //Act
             var controller = new SensorsController(serviceMock.Object);
 
-            //Assert
-            Assert.IsNotNull(controller);
-        }
+            //Act
+            controller.Run();
 
-        [TestMethod]
-        public void ThrowArgumentNullException_WhenServiceIsNull()
-        {
-            //AAA
-            Assert.ThrowsException<ArgumentNullException>(() => new SensorsController(null));
+            //Assert
+            serviceMock.Verify(m => m.Update(), Times.Once);
         }
     }
 }

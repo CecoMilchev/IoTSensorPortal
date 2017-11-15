@@ -5,6 +5,7 @@ using IoTSensorPortal.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System;
 
 namespace IoTSensorPortal.Areas.Admin.Controllers
 {
@@ -26,11 +27,6 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
             this.sensorService = sensorService;
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult AllUsers()
         {
             var usersViewModel = this.dbContext
@@ -40,6 +36,11 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
             return this.View(usersViewModel);
         }
 
+        public object GetAllSensorsList()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<ActionResult> EditUser(string username)
         {
             var user = await this.userManager.FindByNameAsync(username);
@@ -47,6 +48,11 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
             userViewModel.IsAdmin = await this.userManager.IsInRoleAsync(user.Id, "Admin");
 
             return this.PartialView("_EditUser", userViewModel);
+        }
+
+        public object WithCallTo(Func<object, object> p)
+        {
+            throw new NotImplementedException();
         }
 
         [HttpPost]
@@ -67,7 +73,7 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
 
         public ActionResult AllSensors()
         {
-            var model = this.sensorService.GetPublicList();
+            var model = this.sensorService.GetAllSensorsList();
             return View(model);
         }
     }
