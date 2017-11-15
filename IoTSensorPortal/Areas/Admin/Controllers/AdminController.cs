@@ -18,11 +18,11 @@ namespace IoTSensorPortal.Areas.Admin.Controllers
         public AdminController(ApplicationUserManager userManager, ApplicationDbContext dbContext,
             ISensorService sensorService)
         {
-            Guard.WhenArgument<ApplicationDbContext>(dbContext, "dbContext").IsNull();
+            Guard.WhenArgument<ApplicationDbContext>(dbContext, "dbContext").IsNull().Throw();
             this.dbContext = dbContext;
-            Guard.WhenArgument<ApplicationUserManager>(userManager, "userManager").IsNull();
+            Guard.WhenArgument<ApplicationUserManager>(userManager, "userManager").IsNull().Throw();
             this.userManager = userManager;
-            Guard.WhenArgument<ISensorService>(sensorService, "sensorService").IsNull();
+            Guard.WhenArgument<ISensorService>(sensorService, "sensorService").IsNull().Throw();
             this.sensorService = sensorService;
         }
 

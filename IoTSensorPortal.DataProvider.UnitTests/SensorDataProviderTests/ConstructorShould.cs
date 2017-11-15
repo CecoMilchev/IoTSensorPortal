@@ -1,6 +1,7 @@
 ﻿using IoTSensorPortal.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 
 namespace IoTSensorPortal.DataProvider.UnitTests.SensorDataProviderTests
 {
@@ -20,5 +21,11 @@ namespace IoTSensorPortal.DataProvider.UnitTests.SensorDataProviderTests
             Assert.IsNotNull(provider);
         }
 
+        [TestMethod]
+        public void ThrowArgumentNullException_WhenContextIsNull()
+        {
+            //AAA
+            Assert.ThrowsException<ArgumentNullException>(() => new SensorDataProvider(null));
+        }
     }
 }

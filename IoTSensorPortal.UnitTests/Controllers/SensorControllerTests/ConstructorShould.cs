@@ -4,6 +4,7 @@ using IoTSensorPortal.DataProvider.Contracts;
 using IoTSensorPortal.DataService;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 
 namespace IoTSensorPortal.UnitTests.Controllers.SensorControllerTests
 {
@@ -14,16 +15,21 @@ namespace IoTSensorPortal.UnitTests.Controllers.SensorControllerTests
         public void CreateInstance_WhenParametersAreCorrect()
         {
             //Arrange
-            var context = new Mock<ApplicationDbContext>();
-            var provider = new Mock<ISensorDataProvider>();
-            var service = new Mock<ISensorService>();
+            var serviceMock = new Mock<ISensorService>();
 
 
             //Act
-            var controller = new SensorsController(service.Object);
+            var controller = new SensorsController(serviceMock.Object);
 
             //Assert
             Assert.IsNotNull(controller);
+        }
+
+        [TestMethod]
+        public void ThrowArgumentNullException_WhenServiceIsNull()
+        {
+            //AAA
+            Assert.ThrowsException<ArgumentNullException>(() => new SensorsController(null));
         }
     }
 }
