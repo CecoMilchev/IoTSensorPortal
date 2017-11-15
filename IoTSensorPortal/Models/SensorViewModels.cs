@@ -2,16 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace IoTSensorPortal.Models
 {
     //Crud create
     public class CreateViewModel : ISensorRegisterModel
     {
+        public List<SelectListItem> DropDown { get; set; }
+
         [Required, Display(Name = "Sensor name")]
         public string Name { get; set; }
 
-        [Required, Display(Name = "Source targer")]
+        [Display(Name = "Source targer")]
         public string Url { get; set; }
 
         [Required, Display(Name = "Refresh rate")]
@@ -78,6 +81,6 @@ namespace IoTSensorPortal.Models
     {
         public DetailsViewModel Selection { get; set; }
         public Guid SelectedItem { get; set; }
-        public List<string> Sensors { get; set; }
+        public List<ListItem> Sensors { get; set; }
     }
 }

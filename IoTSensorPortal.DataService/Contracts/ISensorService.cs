@@ -19,11 +19,11 @@ namespace IoTSensorPortal.DataService
 
         IList<string> GetAllSensorsList(); //admin action
 
-        IList<string> GetPublicList();
+        List<ListItem> GetPublicList();
 
-        IList<string> GetUserOwn(string userName); //ako e string pestim join-ove v bazata
+        IList<ListItem> GetUserOwn(string userName); //ako e string pestim join-ove v bazata
 
-        IList<string> GetSharedToUser(string userName); //i tuk taka
+        IList<ListItem> GetSharedToUser(string userName); //i tuk taka
 
         IDictionary<DateTime, int> GetHistory(Guid sensorId, TimeSpan period);
 

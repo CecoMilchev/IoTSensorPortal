@@ -1,16 +1,16 @@
-﻿@model IEnumerable<string>
+﻿@model MasterDetailViewModel
 
 <main class="main-flex">
     <aside id="SensorMasterList">
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.Sensors)
             {
             <div>
-                <button id="@Url.Action("Details", "Sensors",  new { area = "", id = item.Split(':')[0]}, null)"
+                <button id="@Url.Action("Details", "Sensors",  new { area = "", id = item.Id}, null)"
                         onclick="loadDetails(id)">
-                    @item.Split(':')[1]
-                    </button>
-                </div>
+                    @item.Title
+                </button>
+            </div>
         }
     </aside>
 
@@ -20,9 +20,8 @@
 </main>
 
 <script>
-    const loadDetails = (url) => {
-        $.ajax(url).done((data) => { $(`#sensor-details`).html(data) });
-    };
+    const loadDetails = (url => $(`#sensor-details`).load(url));
+    const changeDropDownItem = (url => $(`#sensor-dropdown`).load(url));
 
     const rangeColor = (min, max) => {
         let sensorValue = $(`currentValue`);

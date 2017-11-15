@@ -86,28 +86,35 @@ namespace IoTSensorPortal.DataService
             return $"Shared to {user.UserName}";
         }
 
-        public IList<string> GetPublicList()
+        public List<ListItem> GetPublicList()
         {
             var result = this.context.Sensors.
                 Where(x => x.IsPublic == true).
-                Select(x => x.Id + ":" + x.Owner.UserName + "'s" + x.Name).
-                ToArray();
+                Select(x => new ListItem { Id = x.Id, Title = x.Owner.UserName + "`s " + x.Name }).
+                ToList();
+
             return result;
         }
 
-        public IList<string> GetUserOwn(string userName)
+        public IList<ListItem> GetUserOwn(string userName)
         {
-            var result = this.context.Users.First(x => userName == x.UserName).
-                OwnSensors.Select(x => x.Name + " : " + x.CurrentValue).
+            var result = this.context.Users.
+                First(x => userName == x.UserName).
+                OwnSensors.
+                Select(x => new ListItem { Id = x.Id, Title = x.Owner.UserName + "`s " + x.Name }).
                 ToArray();
+
             return result;
         }
 
-        public IList<string> GetSharedToUser(string userName)
+        public IList<ListItem> GetSharedToUser(string userName)
         {
-            var result = this.context.Users.First(x => userName == x.UserName).
-                SharedSensors.Select(x => x.Id + " " + x.Name + " : " + x.Owner+"`s  ").
+            var result = this.context.Users.
+                First(x => userName == x.UserName).
+                SharedSensors.
+                Select(x => new ListItem { Id = x.Id, Title = x.Owner.UserName + "`s " + x.Name }).
                 ToArray();
+
             return result;
         }
 

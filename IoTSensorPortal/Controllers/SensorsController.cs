@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -89,7 +90,7 @@ namespace IoTSensorPortal.Controllers
 
         public ActionResult MasterDetails()
         {
-            var model = this.service.GetPublicList();
+            var model = new MasterDetailViewModel { Sensors = this.service.GetPublicList() };
             return View(model);
         }
 
