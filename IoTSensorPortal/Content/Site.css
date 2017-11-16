@@ -56,11 +56,25 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-collapse.co
     float: right;
 }
 
-#imageCarousel > div > div.item.active > div > p:nth-child(2) > a{
+body > div.container.body-content > .row {
+    display: flex;
+    width: 900px;
+    align-items: baseline;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-flow: wrap;
+}
+
+    body > div.container.body-content > .row > img {
+        height: 200px;
+        max-height: 300px;
+    }
+
+#imageCarousel > div > div.item.active > div > p:nth-child(2) > a {
     float: right;
 }
 
-body > div.container.body-content > div > div:nth-child(1) > img{
+body > div.container.body-content > div > div:nth-child(1) > img {
     width: 70%;
 }
 
