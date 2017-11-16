@@ -10,5 +10,7 @@
         int MaxValue { get; set; } //user defined
 
         bool IsPublic { get; set; } //user defined
+
+        string CurrentValue { get; set; }
     }
 }

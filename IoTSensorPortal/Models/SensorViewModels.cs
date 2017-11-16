@@ -24,6 +24,8 @@ namespace IoTSensorPortal.Models
 
         [Required, Display(Name = "Public")]
         public bool IsPublic { get; set; }
+        public string CurrentValue { get; set; }
+
     }
 
     public class DetailsViewModel
@@ -36,6 +38,7 @@ namespace IoTSensorPortal.Models
             this.MinValue = registration.MinValue;
             this.MaxValue = registration.MaxValue;
             this.IsPublic = registration.IsPublic;
+            this.CurrentValue = registration.CurrentValue;
         }
 
         public Guid Id { get; set; }
@@ -74,6 +77,7 @@ namespace IoTSensorPortal.Models
             this.MinValue = model.MinValue;
             this.MaxValue = model.MaxValue;
             this.IsPublic = model.IsPublic;
+            this.CurrentValue = model.CurrentValue;
         }
 
         [Required] //hidden in view

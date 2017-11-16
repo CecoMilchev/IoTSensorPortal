@@ -8,5 +8,7 @@
         public int MinValue { get; set; }
         public int MaxValue { get; set; }
         public bool IsPublic { get; set; }
+        public string CurrentValue { get; set; }
+
     }
 }

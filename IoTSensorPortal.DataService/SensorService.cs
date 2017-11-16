@@ -53,7 +53,9 @@ namespace IoTSensorPortal.DataService
                 RefreshRate = model.RefreshRate,
                 MinValue = model.MinValue,
                 MaxValue = model.MaxValue,
-                IsPublic = model.IsPublic
+                IsPublic = model.IsPublic,
+                CurrentValue = model.CurrentValue
+                
             };
 
             return result;

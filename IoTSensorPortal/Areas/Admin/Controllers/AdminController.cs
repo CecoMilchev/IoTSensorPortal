@@ -9,7 +9,7 @@ using System;
 
 namespace IoTSensorPortal.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext dbContext;
