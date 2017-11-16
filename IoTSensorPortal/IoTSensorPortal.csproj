@@ -45,7 +45,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
@@ -228,6 +228,14 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\1.png" />
+    <Content Include="Content\Images\2.png" />
+    <Content Include="Content\Images\3.png" />
+    <Content Include="Content\Images\508A1326.JPG" />
+    <Content Include="Content\Images\background-image-1.jpg" />
+    <Content Include="Content\Images\background-image-2.jpg" />
+    <Content Include="Content\Images\background-image-3.jpg" />
+    <Content Include="Content\Images\background-image-4.jpg" />
     <Content Include="Content\LandingPage.css" />
     <Content Include="ErrorPages\400.html" />
     <Content Include="ErrorPages\404.html" />

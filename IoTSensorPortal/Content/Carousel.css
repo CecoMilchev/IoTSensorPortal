@@ -1,0 +1,168 @@
+﻿/* Carousel styles */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -moz-font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.middle-indicator {
+    position: absolute;
+    top: 50%;
+}
+
+.middle-indicator-text {
+    font-size: 4.2rem;
+}
+
+a.middle-indicator-text {
+    color: white !important;
+}
+
+.content-indicator {
+    width: 64px;
+    height: 64px;
+    background: none;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+
+.indicators {
+    visibility: hidden;
+}
+
+.side-nav .collapsible-body > ul:not(.collapsible) > li.active, .side-nav.fixed .collapsible-body > ul:not(.collapsible) > li.active {
+    background-color: #ee6e73
+}
+
+    .side-nav .collapsible-body > ul:not(.collapsible) > li.active a, .side-nav.fixed .collapsible-body > ul:not(.collapsible) > li.active a {
+        color: #fff
+    }
+
+.side-nav .collapsible-body {
+    padding: 0
+}
+
+.side-nav .collapsible {
+    margin: 0
+}
+
+.side-nav .collapsible, .side-nav.fixed .collapsible {
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+    .side-nav .collapsible li, .side-nav.fixed .collapsible li {
+        padding: 0
+    }
+
+.side-nav .collapsible-header, .side-nav.fixed .collapsible-header {
+    background-color: transparent;
+    border: none;
+    line-height: inherit;
+    height: inherit;
+    padding: 0 16px
+}
+
+    .side-nav .collapsible-header:hover, .side-nav.fixed .collapsible-header:hover {
+        background-color: rgba(0,0,0,0.05)
+    }
+
+    .side-nav .collapsible-header i, .side-nav.fixed .collapsible-header i {
+        line-height: inherit
+    }
+
+.side-nav .collapsible-body, .side-nav.fixed .collapsible-body {
+    border: 0;
+    background-color: #fff
+}
+
+    .side-nav .collapsible-body li a, .side-nav.fixed .collapsible-body li a {
+        padding: 0 23.5px 0 31px
+    }
+
+.collapsible.popout {
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+    .collapsible.popout > li {
+        -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+        margin: 0 24px;
+        -webkit-transition: margin 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: margin 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    }
+
+        .collapsible.popout > li.active {
+            -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+            box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+            margin: 16px 0
+        }
+
+.collapsible {
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    margin: .5rem 0 1rem 0
+}
+
+.collapsible-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.5;
+    padding: 1rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd
+}
+
+    .collapsible-header i {
+        width: 2rem;
+        font-size: 1.6rem;
+        display: inline-block;
+        text-align: center;
+        margin-right: 1rem
+    }
+
+.collapsible-body {
+    display: none;
+    border-bottom: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 2rem
+}
+
+.collapsible span.badge {
+    margin-left: auto
+}
+
+.collapsible .collection {
+    margin: 0;
+    border: none
+}
+
+.paddingAll {
+    padding: 10px 10px 10px 10px

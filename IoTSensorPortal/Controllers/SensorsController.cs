@@ -18,13 +18,13 @@ namespace IoTSensorPortal.Controllers
             this.service = sensorService;
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Create()
         {
             return this.View();
         }
 
-        [Authorize, ValidateAntiForgeryToken, HttpPost]
+        [/*Authorize*/ ValidateAntiForgeryToken, HttpPost]
         public ActionResult Create(CreateViewModel model)
         {
             if (this.ModelState.IsValid)
@@ -35,7 +35,7 @@ namespace IoTSensorPortal.Controllers
             return this.View();
         }
 
-        [Authorize, HttpGet]
+        [/*Authorize*/ HttpGet]
         public ActionResult Edit(Guid id) //get the view 
         {
             var model = new EditViewModel(id, this.service.ReadSensor(id));
@@ -43,7 +43,7 @@ namespace IoTSensorPortal.Controllers
             return View(model);
         }
 
-        [Authorize, ValidateAntiForgeryToken, HttpPost]
+        [/*Authorize*/ ValidateAntiForgeryToken, HttpPost]
         public ActionResult Edit(EditViewModel model) //dava greshka zaradi guid
         {
             if (this.ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace IoTSensorPortal.Controllers
             return View();
         }
 
-        [Authorize, ValidateAntiForgeryToken, HttpPost]
+        [/*Authorize*/ ValidateAntiForgeryToken, HttpPost]
         public ActionResult Delete(Guid id)
         {
             if (id != null)
@@ -64,7 +64,7 @@ namespace IoTSensorPortal.Controllers
             return this.View();
         }
 
-        [Authorize]
+        //[/*Authorize*/]
         public ActionResult Details(Guid id)
         {
             var data = this.service.ReadSensor(id);
@@ -78,7 +78,7 @@ namespace IoTSensorPortal.Controllers
             return View(model);
         }
 
-        [Authorize]
+        //[/*Authorize*/]
         public ActionResult OwnList()
         {
             var username = this.User.Identity.Name;
@@ -86,7 +86,7 @@ namespace IoTSensorPortal.Controllers
             return View(model);
         }
 
-        [Authorize]
+        //[/*Authorize*/]
         public ActionResult SharedToUserList()
         {
             var username = this.User.Identity.Name;

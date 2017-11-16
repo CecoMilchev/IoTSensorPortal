@@ -40,3 +40,15 @@ textarea {
 body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-collapse.collapse > ul > li.dropdown.open > ul > li > a {
  color:black
 }
+
+#imageCarousel > div > div.item.active > div > p:nth-child(2) > a{
+    float: right;
+}
+
+body > div.container.body-content > div > div:nth-child(1) > img{
+    width: 70%;
+}
+
+div:nth-child(1) div .col-sm-4 {
+    position:center;
+}
