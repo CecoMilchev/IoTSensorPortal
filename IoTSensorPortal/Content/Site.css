@@ -30,15 +30,30 @@ textarea {
     margin: 10px 10px 0 10px;
 }
 
-.nav.navbar-nav li a{
+.nav.navbar-nav li a {
     color: #fff;
 }
 
 #logoutForm > div > ul > li > ul > li > a {
     color: #000000;
 }
+
 body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-collapse.collapse > ul > li.dropdown.open > ul > li > a {
- color:black
+    color: black
+}
+
+.main-flex {
+    display: flex;
+    flex-direction: row;
+    flex-flow: nowrap;
+}
+
+#edit, #delete {
+    padding: 5px;
+    margin: 5px;
+    display: inline;
+    max-height: 50px;
+    float: right;
 }
 
 #imageCarousel > div > div.item.active > div > p:nth-child(2) > a{
