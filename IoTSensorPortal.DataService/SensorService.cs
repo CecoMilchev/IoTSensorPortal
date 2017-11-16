@@ -23,23 +23,26 @@ namespace IoTSensorPortal.DataService
 
         public Guid CreateSensor(string owner, IRegisterableModel model)
         {
-            var user = this.context.Users.First(x => x.UserName == owner);
-
-            var sensor = new Sensor
+            RegisteredUser user = this.context.Users.First(x => x.UserName == owner);
+            DateTime createDate = DateTime.Now;
+            List<History> history = new List<History> { new History() { Id = Guid.NewGuid(), UpdateDate = createDate } };
+            Sensor sensor = new Sensor
             {
+                Id = Guid.NewGuid(),
                 Url = model.Url,
                 Name = model.Name,
                 RefreshRate = model.RefreshRate,
                 MinValue = model.MinValue,
                 MaxValue = model.MaxValue,
-                IsPublic = model.IsPublic
+                IsPublic = model.IsPublic,
+                CurrentValue = null,
+                LastUpdated = createDate
             };
             user.OwnSensors.Add(sensor);
             this.context.SaveChanges();
 
             return sensor.Id;
         }
-
         public IRegisterableModel ReadSensor(Guid id)
         {
             var model = this.context.Sensors.Find(id);
