@@ -60,9 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ISensorDetails.cs" />
-    <Compile Include="Contracts\ISensorService.cs" />
     <Compile Include="Contracts\IRegisterableModel.cs" />
+    <Compile Include="Contracts\ISensorService.cs" />
     <Compile Include="Contracts\ISpecification.cs" />
     <Compile Include="Models\ListItemModel.cs" />
     <Compile Include="Models\RealTimeState.cs" />

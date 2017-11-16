@@ -24,32 +24,32 @@ namespace IoTSensorPortal.UnitTests.Controllers.SensorControllerTests
                 .ShouldRenderDefaultView();
         }
 
-        [TestMethod]
-        public void RedirectToDetailsView_WhenModelStateIsValid()
-        {
-            //Arrange
-            var serviceMock = new Mock<ISensorService>();
-            var controller = new SensorsController(serviceMock.Object);
+        //[TestMethod]
+        //public void RedirectToDetailsView_WhenModelStateIsValid()
+        //{
+        //    //Arrange
+        //    var serviceMock = new Mock<ISensorService>();
+        //    var controller = new SensorsController(serviceMock.Object);
 
-            var idMock = Guid.NewGuid();
-            var userIdMock = "123";
+        //    var idMock = Guid.NewGuid();
+        //    var userIdMock = "123";
 
-            var sensorViewModelMock = new CreateViewModel()
-            {
-                Name = "Name",
-                Url = "Url",
-                RefreshRate = 10,
-                IsPublic = true,
-                MinValue = 8,
-                MaxValue = 12
-            };
+        //    var sensorViewModelMock = new CreateViewModel()
+        //    {
+        //        Name = "Name",
+        //        Url = "Url",
+        //        RefreshRate = 10,
+        //        IsPublic = true,
+        //        MinValue = 8,
+        //        MaxValue = 12
+        //    };
 
-            serviceMock.SetupGet(x => x.CreateSensor(userIdMock, sensorViewModelMock)).Returns(idMock);
+        //    serviceMock.SetupGet(x => x.CreateSensor(userIdMock, sensorViewModelMock)).Returns(idMock);
             
-            //Act & Assert
-            controller.WithCallTo(x => x.Create(sensorViewModelMock))
-                .ShouldRedirectToRoute($"Details/{idMock}");
-        }
+        //    //Act & Assert
+        //    controller.WithCallTo(x => x.Create(sensorViewModelMock))
+        //        .ShouldRedirectToRoute($"Details/{idMock}");
+        //}
 
     }
 }
