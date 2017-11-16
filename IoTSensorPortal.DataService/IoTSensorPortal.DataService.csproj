@@ -60,13 +60,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ISensorDetails.cs" />
     <Compile Include="Contracts\ISensorService.cs" />
-    <Compile Include="Contracts\ISensorSpecification.cs" />
-    <Compile Include="Models\ListItem.cs" />
+    <Compile Include="Contracts\IRegisterableModel.cs" />
+    <Compile Include="Contracts\ISpecification.cs" />
+    <Compile Include="Models\ListItemModel.cs" />
+    <Compile Include="Models\RealTimeState.cs" />
+    <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Models\SpecificationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SensorService.cs" />
-    <Compile Include="ViewModels\CurrentSensorValueViewModel.cs" />
-    <Compile Include="ViewModels\SensorInfoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IoTSensorPortal.DataProvider\IoTSensorPortal.DataProvider.csproj">

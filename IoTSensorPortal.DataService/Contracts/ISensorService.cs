@@ -5,29 +5,26 @@ namespace IoTSensorPortal.DataService
 {
     public interface ISensorService
     {
-        //C
-        Guid CreateSensor(string owner, ISensorRegisterModel model);
-        //R
-        string ReadSensor(Guid id); //json
-        //U
-        Guid UpdateSensor(Guid id, ISensorRegisterModel model);
-        //D
+        //CRUD
+        Guid CreateSensor(string owner, IRegisterableModel model);
+        IRegisterableModel ReadSensor(Guid id);
+        Guid UpdateSensor(Guid id, IRegisterableModel model);
         string DeleteSensor(Guid id);
 
+        //Sharing
         string ShareTo(Guid registeredUser, Guid sensorId);
 
+        //Listing
         IList<string> GetAllSensorsList(); //admin action
+        List<ListItemModel> GetPublicList();
+        List<ListItemModel> GetUserOwn(string userName);
+        List<ListItemModel> GetSharedToUser(string userName);
 
-        List<ListItem> GetPublicList();
-
-        List<ListItem> GetUserOwn(string userName); //ako e string pestim join-ove v bazata
-
-        List<ListItem> GetSharedToUser(string userName); //i tuk taka
-
+        //History
         IDictionary<DateTime, int> GetHistory(Guid sensorId, TimeSpan period);
 
-        IEnumerable<T> GetSensorSpecifications<T>();
-        
+        //Other
+        IEnumerable<SpecificationModel> GetSensorSpecifications();
         void Update(); //update to controller to update sensor specification every 30min
     }
 }

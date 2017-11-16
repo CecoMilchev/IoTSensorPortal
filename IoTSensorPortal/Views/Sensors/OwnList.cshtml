@@ -6,42 +6,30 @@
         @foreach (var item in Model.Sensors)
             {
             <div>
-                <button id="@Url.Action("Details", "Sensors",  new { area = "", id = item.Id}, null)"
-                        onclick="loadDetails(id)">
-                    @item.Title
-                </button>
+                <button id="@item.Id" onclick="loadDetails(id)">@item.Title</button>
             </div>
         }
     </aside>
 
-    @if (Model.SelectedItem != null)
-    {
-        <button id="@Url.Action("Edit", "Sensors", new { area = "",  id = Model.SelectedItem })"
-                onclick="loadEdit(id)">
-            Edit Sensor
-        </button>
-        <button id="@Url.Action("Delete", "Sensors", new { area = "",  id = Model.SelectedItem })"
-                onclick="loadEdit(id)">
-            Delete Sensor
-        </button>
+    <main id="selected-sensor"></main>
+    @{
+        <button id="edit" onclick="loadEdit()">Edit</button>
+        <button id="delete" onclick="loadDelete()">Delete</button>
     }
-    <main id="sensor-details">
-    </main>
 </main>
 
 <script>
-    const loadDetails = (url => $(`#sensor-details`).load(url));
-    const loadEdit = (url => $(`#sensor-details`).load(url));
-    const changeDropDownItem = (url => $(`#sensor-dropdown`).load(url));
+    let selectedItemId = ``;
+    const loadDetails = (id) => {
+        $(`#selected-sensor`).load(`/sensors/details/${id}`);
+        selectedItemId = id;
+    };
 
-    const rangeColor = (min, max) => {
-        let sensorValue = $(`currentValue`);
+    const loadEdit = () => {
+        $(`#selected-sensor`).load(`/sensors/edit/${selectedItemId}`);
+    };
 
-        //no connection
-        if (!Number(sensorValue.text)) return (sensorValue.text.style.color = `#A9A9A9`);
-
-        if (Number(sensorValue.text) > min && Number(sensorValue.text) < max) {
-            sensorValue.text.style.color = `#7FFF00`; //in range
-        } else { sensorValue.text.style.color = `#FF0000`; } //out range
+    const loadDelete = () => {
+        $(`#selected-sensor`).load(`/sensors/delete/${selectedItemId}`);
     };
 </script>

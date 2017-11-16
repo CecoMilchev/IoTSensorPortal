@@ -18,18 +18,6 @@ namespace IoTSensorPortal.Controllers
             this.service = sensorService;
         }
 
-        public void Run() //public only for the windows service to run
-        {
-            //update our service
-            this.service.Update();
-        }
-
-        private IEnumerable<SpecificationViewModel> GetSensorTypes()
-        {
-            var sensorSpecification = this.service.GetSensorSpecifications<SpecificationViewModel>();
-            return sensorSpecification;
-        }
-
         [Authorize]
         public ActionResult Create()
         {
@@ -42,24 +30,23 @@ namespace IoTSensorPortal.Controllers
             if (this.ModelState.IsValid)
             {
                 var id = this.service.CreateSensor(this.User.Identity.Name, model);
-                return this.RedirectToAction("Details", new { id });
+                return this.RedirectToAction("OwnList", new { id });
             };
             return this.View();
         }
 
-        [Authorize]
-        public ActionResult Edit(Guid id) //get the view
+        [Authorize, HttpGet]
+        public ActionResult Edit(Guid id) //get the view 
         {
-            string jsonString = this.service.ReadSensor(id);
-            var createModel = JsonConvert.DeserializeObject<CreateViewModel>(jsonString);
+            var model = new EditViewModel(id, this.service.ReadSensor(id));
 
-            return View(createModel);
+            return View(model);
         }
 
         [Authorize, ValidateAntiForgeryToken, HttpPost]
-        public ActionResult Edit(EditViewModel model) //post the ne data
+        public ActionResult Edit(EditViewModel model) //dava greshka zaradi guid
         {
-            if (model.Id != null && this.ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var sensor = this.service.UpdateSensor(model.Id, model);
                 return View(sensor);
@@ -80,15 +67,14 @@ namespace IoTSensorPortal.Controllers
         [Authorize]
         public ActionResult Details(Guid id)
         {
-            string jsonString = this.service.ReadSensor(id);
-            var model = JsonConvert.DeserializeObject<DetailsViewModel>(jsonString);
-            //kak da go kast kum viewModel
+            var data = this.service.ReadSensor(id);
+            var model = new DetailsViewModel(data);
             return View(model);
         }
 
         public ActionResult PublicList()
         {
-            var model = new MasterDetailViewModel { Sensors = this.service.GetPublicList() };
+            var model = new MasterDetailViewModel(this.service.GetPublicList());
             return View(model);
         }
 
@@ -96,7 +82,7 @@ namespace IoTSensorPortal.Controllers
         public ActionResult OwnList()
         {
             var username = this.User.Identity.Name;
-            var model = new MasterDetailViewModel { Sensors = this.service.GetUserOwn(username) };
+            var model = new MasterDetailViewModel(this.service.GetUserOwn(username));
             return View(model);
         }
 
@@ -104,9 +90,21 @@ namespace IoTSensorPortal.Controllers
         public ActionResult SharedToUserList()
         {
             var username = this.User.Identity.Name;
-            var model = new MasterDetailViewModel { Sensors = this.service.GetSharedToUser(username) };
+            var model = new MasterDetailViewModel(this.service.GetSharedToUser(username));
 
             return View(model);
+        }
+
+        public void Run() //public only for the windows service to run
+        {
+            //update our service
+            this.service.Update();
+        }
+
+        private IEnumerable<SpecificationModel> GetSensorTypes()
+        {
+            var sensorSpecification = this.service.GetSensorSpecifications();
+            return sensorSpecification;
         }
     }
 }

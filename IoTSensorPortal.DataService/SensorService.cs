@@ -2,7 +2,6 @@
 using IoTSensorPortal.Data;
 using IoTSensorPortal.Data.Models;
 using IoTSensorPortal.DataProvider.Contracts;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,23 +21,18 @@ namespace IoTSensorPortal.DataService
             this.provider = provider;
         }
 
-        public Guid CreateSensor(string owner, ISensorRegisterModel model)
+        public Guid CreateSensor(string owner, IRegisterableModel model)
         {
-            RegisteredUser user = this.context.Users.First(x => x.UserName == owner);
-            DateTime createDate = DateTime.Now;
-            List<History> history = new List<History> { new History() { Id = Guid.NewGuid(), UpdateDate = createDate } };
-            Sensor sensor = new Sensor
+            var user = this.context.Users.First(x => x.UserName == owner);
+
+            var sensor = new Sensor
             {
-                Id = Guid.NewGuid(),
-                History = history,
-                IsPublic = model.IsPublic,
-                LastUpdated = createDate,
-                MaxValue = model.MaxValue,
-                MinValue = model.MinValue,
+                Url = model.Url,
                 Name = model.Name,
                 RefreshRate = model.RefreshRate,
-                Url = model.Url,
-                CurrentValue = null
+                MinValue = model.MinValue,
+                MaxValue = model.MaxValue,
+                IsPublic = model.IsPublic
             };
             user.OwnSensors.Add(sensor);
             this.context.SaveChanges();
@@ -46,17 +40,23 @@ namespace IoTSensorPortal.DataService
             return sensor.Id;
         }
 
-        public string ReadSensor(Guid id)
+        public IRegisterableModel ReadSensor(Guid id)
         {
-            Sensor sensor = this.context.Sensors.Find(id);
-            return JsonConvert.SerializeObject(sensor, new JsonSerializerSettings()
+            var model = this.context.Sensors.Find(id);
+            var result = new RegistrationModel
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
+                Url = model.Url,
+                Name = model.Name,
+                RefreshRate = model.RefreshRate,
+                MinValue = model.MinValue,
+                MaxValue = model.MaxValue,
+                IsPublic = model.IsPublic
+            };
 
+            return result;
         }
 
-        public Guid UpdateSensor(Guid id, ISensorRegisterModel model)
+        public Guid UpdateSensor(Guid id, IRegisterableModel model)
         {
             var sensor = this.context.Sensors.Find(id);
             sensor.Url = model.Url; //proverka dali se e smenil typa ako da create sensor i tiq danni
@@ -86,33 +86,33 @@ namespace IoTSensorPortal.DataService
             return $"Shared to {user.UserName}";
         }
 
-        public List<ListItem> GetPublicList()
+        public List<ListItemModel> GetPublicList()
         {
             var result = this.context.Sensors.
                 Where(x => x.IsPublic == true).
-                Select(x => new ListItem { Id = x.Id, Title = x.Owner.UserName + "`s " + x.Name }).
+                Select(x => new ListItemModel { Id = x.Id, Title = x.Owner.UserName + "`s " + x.Name }).
                 ToList();
 
             return result;
         }
 
-        public List<ListItem> GetUserOwn(string userName)
+        public List<ListItemModel> GetUserOwn(string userName)
         {
             var result = this.context.Users.
                 First(x => userName == x.UserName).
                 OwnSensors.
-                Select(x => new ListItem { Id = x.Id, Title = x.Owner.UserName + "`s " + x.Name }).
+                Select(x => new ListItemModel { Id = x.Id, Title = x.Owner.UserName + "`s " + x.Name }).
                 ToList();
 
             return result;
         }
 
-        public List<ListItem> GetSharedToUser(string userName)
+        public List<ListItemModel> GetSharedToUser(string userName)
         {
             var result = this.context.Users.
                 First(x => userName == x.UserName).
                 SharedSensors.
-                Select(x => new ListItem { Id = x.Id, Title = x.Owner.UserName + "`s " + x.Name }).
+                Select(x => new ListItemModel { Id = x.Id, Title = x.Owner.UserName + "`s " + x.Name }).
                 ToList();
 
             return result;
@@ -121,7 +121,7 @@ namespace IoTSensorPortal.DataService
         //Admin only action
         public IList<string> GetAllSensorsList()
         {
-            var result = this.context.Sensors.Select(x => x.Id + " " + x.Name + " " + x.LastUpdated + " " + (x.IsPublic?"Public":"Private") + " " + x.RefreshRate).ToArray();
+            var result = this.context.Sensors.Select(x => x.Id + " " + x.Name + " " + x.LastUpdated + " " + (x.IsPublic ? "Public" : "Private") + " " + x.RefreshRate).ToArray();
             return result;
         }
 
@@ -130,9 +130,9 @@ namespace IoTSensorPortal.DataService
             return null;
         }
 
-        public IEnumerable<T> GetSensorSpecifications<T>()
+        public IEnumerable<SpecificationModel> GetSensorSpecifications()
         {
-            var allTypes = this.provider.GetAllSensorsInfo<T>();
+            var allTypes = this.provider.GetAllSensorsInfo<SpecificationModel>();
             return allTypes;
         }
 

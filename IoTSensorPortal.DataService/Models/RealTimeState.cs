@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace IoTSensorPortal.DataService.ViewModels
+namespace IoTSensorPortal.DataService
 {
-    public class CurrentSensorValueViewModel
+    public class RealTimeState
     {
         public DateTime TimeStamp { get; set; }
         public string Value { get; set; }

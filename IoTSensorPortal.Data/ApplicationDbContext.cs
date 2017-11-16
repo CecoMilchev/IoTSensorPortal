@@ -6,10 +6,7 @@ namespace IoTSensorPortal.Data
 {
     public class ApplicationDbContext : IdentityDbContext<RegisteredUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
+        public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false) { }
 
         public virtual IDbSet<Sensor> Sensors { get; set; }
 

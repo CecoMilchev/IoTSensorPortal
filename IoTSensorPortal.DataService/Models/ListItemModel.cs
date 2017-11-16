@@ -2,7 +2,7 @@
 
 namespace IoTSensorPortal.DataService
 {
-    public class ListItem
+    public class ListItemModel
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
