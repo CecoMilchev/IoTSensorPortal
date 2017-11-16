@@ -6,7 +6,7 @@
         @foreach (var item in Model.Sensors)
             {
             <div>
-                <button id="@item.Id" onclick="loadDetails(id)">@item.Title</button>
+                <button id="@item.Id" onclick="loadDetails(id)" class="btn-details">@item.Title</button>
             </div>
         }
     </aside>
