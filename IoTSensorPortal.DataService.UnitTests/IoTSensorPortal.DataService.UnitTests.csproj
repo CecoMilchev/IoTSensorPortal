@@ -71,11 +71,7 @@
     <Compile Include="SensorServiceTests\GetPublicShould.cs" />
     <Compile Include="SensorServiceTests\GetUserOwnShould.cs" />
     <Compile Include="SensorServiceTests\GetSharedToUserShould.cs" />
-    <Compile Include="SensorServiceTests\GetHistoryShould.cs" />
-    <Compile Include="SensorServiceTests\GetSpecificationShould.cs" />
-    <Compile Include="SensorServiceTests\UpdateShould.cs" />
     <Compile Include="SensorServiceTests\DeleteShould.cs" />
-    <Compile Include="SensorServiceTests\ReadShould.cs" />
     <Compile Include="SensorServiceTests\GetAllShould.cs" />
   </ItemGroup>
   <ItemGroup>
